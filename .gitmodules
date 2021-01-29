@@ -1,0 +1,7 @@
+[submodule "projects/Carmanagement"]
+	path = projects/Carmanagement
+	url = https://github.com/HoNgocKinh/CarManagement.git
+
+[submodule "projects/pet-be"]
+	path = projects/pet-be
+	url = https://github.com/HoNgocKinh/pet-be.git

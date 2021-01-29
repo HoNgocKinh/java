@@ -1,0 +1,28 @@
+[INFO  - 2020-09-01T19:41:13.778Z] GhostDriver - Main - running on port 16037
+[INFO  - 2020-09-01T19:41:14.651Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-09-01T19:41:14.651Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.customHeaders:  - {}
+[INFO  - 2020-09-01T19:41:14.651Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-09-01T19:41:14.652Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 18a75450-ec8b-11ea-b0d2-237ec8f314c8
+[INFO  - 2020-09-01T19:41:19.981Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-09-01T19:41:19.981Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.customHeaders:  - {}
+[ERROR - 2020-09-01T19:41:20.159Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.onError - msg: ReferenceError: Can't find variable: jQuery
+[ERROR - 2020-09-01T19:41:20.160Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.onError - stack:
+  global code (https://cnsv.tdtu.edu.vn/?Token=78b47262&RequestId=1c1f9d0a:15)
+[ERROR - 2020-09-01T19:41:20.971Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.onError - msg: ReferenceError: Can't find variable: jQuery
+[ERROR - 2020-09-01T19:41:20.971Z] Session [18a75450-ec8b-11ea-b0d2-237ec8f314c8] - page.onError - stack:
+  global code (https://cnsv.tdtu.edu.vn/kqgn?Token=78b47262&RequestId=c9bef501:15)
+[INFO  - 2020-09-01T19:41:22.751Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2020-09-01T19:42:01.446Z] GhostDriver - Main - running on port 42742
+[INFO  - 2020-09-01T19:42:01.669Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-09-01T19:42:01.669Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.customHeaders:  - {}
+[INFO  - 2020-09-01T19:42:01.670Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-09-01T19:42:01.670Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 34adb4f0-ec8b-11ea-8780-f70e81e8a97f
+[INFO  - 2020-09-01T19:42:08.117Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-09-01T19:42:08.117Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.customHeaders:  - {}
+[ERROR - 2020-09-01T19:42:08.626Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.onError - msg: ReferenceError: Can't find variable: jQuery
+[ERROR - 2020-09-01T19:42:08.627Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.onError - stack:
+  global code (https://cnsv.tdtu.edu.vn/?Token=c3212300&RequestId=158fbc68:15)
+[ERROR - 2020-09-01T19:42:09.172Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.onError - msg: ReferenceError: Can't find variable: jQuery
+[ERROR - 2020-09-01T19:42:09.173Z] Session [34adb4f0-ec8b-11ea-8780-f70e81e8a97f] - page.onError - stack:
+  global code (https://cnsv.tdtu.edu.vn/kqgn?Token=c3212300&RequestId=a06bd3a2:15)
+[INFO  - 2020-09-01T19:42:10.714Z] ShutdownReqHand - _handle - About to shutdown
