@@ -4,35 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Bill {
+@Table(name = "bill")
+public class Bill extends BaseEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private static final long serialVersionUID = 1l;
+	
+	@Column(name = "total")
 	private float total;
+	
+	@Column(name = "customerPhone")
 	private String customerPhone;
+	
+	@Column(name = "tax_rate")
+	private float taxRate;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="bill_id")
-	private List<BillDetail> billDetails;
+	private List<BillDetail> billDetails = new ArrayList<BillDetail>();
 	
 	@ManyToOne
 	private Account account;
 	
-	
-	
-	public Bill() {
-		super();
-	}
+	public Bill() { }
 
 	public List<BillDetail> getBillDetails() {
 		return billDetails;
@@ -40,14 +41,6 @@ public class Bill {
 
 	public void setBillDetails(List<BillDetail> billDetails) {
 		this.billDetails = billDetails;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	
 	public String getCustomerPhone() {
@@ -77,15 +70,7 @@ public class Bill {
 	public BillDetail createBillDetail(Room room) {
 		
 		BillDetail billDetail = new BillDetail(room, this);
-		
-		if (billDetails == null) {
-			billDetails = new ArrayList<>();
-			billDetails.add(billDetail);
-		}
-		else {
-			billDetails.add(billDetail);
-		}
-		
+		billDetails.add(billDetail);
 		return billDetail;
 	}
 

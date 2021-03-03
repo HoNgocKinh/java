@@ -1,47 +1,80 @@
 package info.kinhho.karaoke.entity;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-public class Room {
+@Table(name = "room")
+public class Room extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id; 
+	private static final long serialVersionUID = 1L;
 	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "floor")
 	private int floor;
 	
+	@Column(name = "type")
 	private String type;
-	private String state;
-	private Date timeStart;
-		
-	private String customPhone;
+	
+	@Column(name = "capacity")
+	private int capacity;
+	
+	/**
+	 * Check Status of Room when order...
+	 */
+	@Column(name = "status")
+	private String status;
+	
+	/**
+	 * Time actually when customer receive room from staff.
+	 */
+	@Column(name = "check_in")
+	private ZonedDateTime checkIn;
+	
+	@Column(name = "customer_phone")
+	private String customerPhone;
+	
+	/**
+	 * Staff who set status "USING" room for customer
+	 * */
+	@Column(name = "staff_open_room")
+	private Account staffOpenRoom;
+	
+	@OneToOne(mappedBy = "room")
+	private RoomPrice roomPrice;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "room_id", referencedColumnName = "id")
+	private List<BookRoom> bookRooms = new ArrayList<BookRoom>();
+	
+	@Transient
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd/MM/yy") ;
 	
 	public Room() {
 		super();
 	}
 	
-	public Room(String name, String type, String state, int floor) {
+	public Room(String name, String type, String status, int floor) {
 		this.name = name;
 		this.type = type;
 		this.floor = floor;
-		this.state = state;
+		this.status = status;
 		
-		this.customPhone = "EMPTY";
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
+		this.customerPhone = "EMPTY";
 	}
 	
 	public int getFloor() {
@@ -58,12 +91,12 @@ public class Room {
 		this.name = name;
 	}
 	
-	public String getCustomPhone() {
-		return customPhone;
+	public String getCustomerPhone() {
+		return customerPhone;
 	}
 
-	public void setCustomPhone(String customPhone) {
-		this.customPhone = customPhone;
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
 	}
 
 	public String getType() {
@@ -72,38 +105,59 @@ public class Room {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String isState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public Date getTimeStart() {
-		return timeStart;
-	}
-	public void setTimeStart(Date timeStart) {
-		this.timeStart = timeStart;
+	
+	public int getCapacity() {
+		return capacity;
 	}
 
-	public String getState() {
-		return state;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
-	
-	
-	@Override
-	public String toString() {
-		return "Room [id=" + id + ", name=" + name + ", floor=" + floor + ", type=" + type + ", state=" + state
-				+ ", timeStart=" + timeStart + "]";
+	public String getStatus() {
+		return status;
 	}
 
-	@Transient
-	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd/MM/yy") ;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public ZonedDateTime getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(ZonedDateTime checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public Account getStaffOpenRoom() {
+		return staffOpenRoom;
+	}
+
+	public void setStaffOpenRoom(Account staffOpenRoom) {
+		this.staffOpenRoom = staffOpenRoom;
+	}
+
+	public RoomPrice getRoomPrice() {
+		return roomPrice;
+	}
+
+	public void setRoomPrice(RoomPrice roomPrice) {
+		this.roomPrice = roomPrice;
+	}
 	
+	public List<BookRoom> getBookRooms() {
+		return bookRooms;
+	}
+
+	public void setBookRooms(List<BookRoom> bookRooms) {
+		this.bookRooms = bookRooms;
+	}
+
 	public String displayTimeCheckIn() {
-		if (timeStart == null) return "";
+		if (Objects.isNull(checkIn)) return "";
 		
-		return sdf.format(timeStart);
+		return sdf.format(checkIn);
 	}
 	
 	public String displayTypeRoom() {
@@ -113,10 +167,10 @@ public class Room {
 		return "VIP";
 	}
 	
-	public String displayStateRoom() {
-		if (state.equals("EMPTY"))
+	public String displayStatusRoom() {
+		if (status.equals("EMPTY"))
 			return "Trống";
-		else if (state.equals("ORDERED")) {
+		else if (status.equals("ORDERED")) {
 			return "Đã đặt";
 		}
 		return "Đang sử dụng";

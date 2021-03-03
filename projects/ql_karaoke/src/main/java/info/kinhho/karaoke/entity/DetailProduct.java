@@ -1,16 +1,16 @@
 package info.kinhho.karaoke.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-public class DetailFood implements Serializable {
+@Table(name = "detail_product")
+public class DetailProduct extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -21,8 +21,8 @@ public class DetailFood implements Serializable {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="food_id")
-	private Food food;
+	@JoinColumn(name="product_id")
+	private Product product;
 	
 	@Column(name = "quanlity")
 	private int quanlity;
@@ -35,23 +35,20 @@ public class DetailFood implements Serializable {
 	@Transient
 	private String roomName;
 	
-	public DetailFood(BillDetail detail, Food food, int quanlity) {
+	public DetailProduct(BillDetail detail, Product product, int quanlity) {
 		this.billDetail = detail;
-		this.food = food;
+		this.product = product;
 		this.quanlity = quanlity;
 	}
 	
-	public DetailFood(String roomName) {
+	public DetailProduct(String roomName) {
 		this.roomName = roomName;
 	}
 	
-	public DetailFood() {
-		super();
-	}
+	public DetailProduct() { }
 
-	public DetailFood(Food food, int quanlity) {
-		super();
-		this.food = food;
+	public DetailProduct(Product product, int quanlity) {
+		this.product = product;
 		this.quanlity = quanlity;
 	}
 
@@ -63,12 +60,12 @@ public class DetailFood implements Serializable {
 		this.billDetail = billDetail;
 	}
 
-	public Food getFood() {
-		return food;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setFood(Food food) {
-		this.food = food;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuanlity() {
@@ -97,7 +94,7 @@ public class DetailFood implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DetailFood [billDetailId=" + billDetail.getId() + ", foodId=" + food.getId() + ", quanlity=" + quanlity + "]";
+		return "DetailFood [billDetailId=" + billDetail.getId() + ", productId=" + product.getId() + ", quanlity=" + quanlity + "]";
 	}
 	
 }

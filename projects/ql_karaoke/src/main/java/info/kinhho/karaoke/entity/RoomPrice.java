@@ -1,27 +1,43 @@
 package info.kinhho.karaoke.entity;
 
+import java.time.ZonedDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class RoomPrice {
+@Table(name = "room_price")
+public class RoomPrice extends BaseEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private static final long serialVersionUID = 1l;
+	
+	@Column(name = "typeRoom")
 	private String typeRoom;
+	
+	@Column(name = "price")
 	private float price;
-	private int checkIn; // hour check-in
-	private int checkOut; //hour check-out
+	
+	@Column(name = "check_in")
+	private ZonedDateTime checkIn; // hour check-in
+	
+	@Column(name = "check_out")
+	private ZonedDateTime checkOut; //hour check-out
+	
+	@Column(name = "type_day")
 	private String typeDay;
+	
+	@OneToOne
+	@JoinColumn(name = "room_id", referencedColumnName = "id")
+	private Room room;
 	
 	public RoomPrice() {
 				
 	}
 	
-	public RoomPrice(String typeRoom, float price, int checkIn, int checkOut, String typeDay) {
+	public RoomPrice(String typeRoom, float price, ZonedDateTime checkIn, ZonedDateTime checkOut, String typeDay) {
 
 		this.typeRoom = typeRoom;
 		this.price = price;
@@ -30,12 +46,6 @@ public class RoomPrice {
 		this.typeDay = typeDay;
 	}
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getTypeRoom() {
 		return typeRoom;
 	}
@@ -48,18 +58,23 @@ public class RoomPrice {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getCheckIn() {
+	
+	public ZonedDateTime getCheckIn() {
 		return checkIn;
 	}
-	public void setCheckIn(int checkIn) {
+
+	public void setCheckIn(ZonedDateTime checkIn) {
 		this.checkIn = checkIn;
 	}
-	public int getCheckOut() {
+
+	public ZonedDateTime getCheckOut() {
 		return checkOut;
 	}
-	public void setCheckOut(int checkOut) {
+
+	public void setCheckOut(ZonedDateTime checkOut) {
 		this.checkOut = checkOut;
 	}
+
 	public String getTypeDay() {
 		return typeDay;
 	}
@@ -84,6 +99,14 @@ public class RoomPrice {
 		return "Ngày lễ";
 	}
 	
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
 	@Override
 	public String toString() {
 		return "Room_Price [id=" + id + ", typeRoom=" + typeRoom + ", price=" + price + ", checkIn=" + checkIn
