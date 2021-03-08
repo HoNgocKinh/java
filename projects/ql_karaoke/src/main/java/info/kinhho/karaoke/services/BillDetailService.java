@@ -7,25 +7,7 @@ import info.kinhho.karaoke.repository.BillDetailRepository;
 
 
 @Service
-public class BillDetailService {
+public class BillDetailService extends BaseService<BillDetail, BillDetailRepository>{
 	
-	private BillDetailRepository billDetailRepository;
-	
-	public BillDetailService(BillDetailRepository billDetailRepository) {
-		
-		this.billDetailRepository = billDetailRepository;
-	}
-	
-	public Iterable<BillDetail> get() {
-		
-		return this.billDetailRepository.findAll();
-	}
-	
-	public BillDetail get(Integer id) {
-		return this.billDetailRepository.findById(id).get();
-	}
-	
-	public void save(BillDetail billDetail) {
-		this.billDetailRepository.save(billDetail);
-	} 
+	public BillDetailService() {}
 }

@@ -19,6 +19,14 @@ public class Supplier extends BaseEntity {
 	@Column(name = "address")
 	private String address;
 
+	public Supplier() {}
+	
+	public Supplier(String name, String phone, String address) {
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+	}
+	
 	public String getName() {
 		return name;
 	}

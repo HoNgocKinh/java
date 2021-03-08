@@ -1,7 +1,5 @@
 package info.kinhho.karaoke.entity;
 
-import java.time.ZonedDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -21,10 +19,10 @@ public class RoomPrice extends BaseEntity {
 	private float price;
 	
 	@Column(name = "check_in")
-	private ZonedDateTime checkIn; // hour check-in
+	private int checkIn; // hour check-in
 	
 	@Column(name = "check_out")
-	private ZonedDateTime checkOut; //hour check-out
+	private int checkOut; //hour check-out
 	
 	@Column(name = "type_day")
 	private String typeDay;
@@ -37,7 +35,7 @@ public class RoomPrice extends BaseEntity {
 				
 	}
 	
-	public RoomPrice(String typeRoom, float price, ZonedDateTime checkIn, ZonedDateTime checkOut, String typeDay) {
+	public RoomPrice(String typeRoom, float price, int checkIn, int checkOut, String typeDay) {
 
 		this.typeRoom = typeRoom;
 		this.price = price;
@@ -59,19 +57,19 @@ public class RoomPrice extends BaseEntity {
 		this.price = price;
 	}
 	
-	public ZonedDateTime getCheckIn() {
+	public int getCheckIn() {
 		return checkIn;
 	}
 
-	public void setCheckIn(ZonedDateTime checkIn) {
+	public void setCheckIn(int checkIn) {
 		this.checkIn = checkIn;
 	}
 
-	public ZonedDateTime getCheckOut() {
+	public int getCheckOut() {
 		return checkOut;
 	}
 
-	public void setCheckOut(ZonedDateTime checkOut) {
+	public void setCheckOut(int checkOut) {
 		this.checkOut = checkOut;
 	}
 

@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 import org.springframework.stereotype.Service;
 
 import info.kinhho.karaoke.entity.BillDetail;
-import info.kinhho.karaoke.entity.DateType;
 import info.kinhho.karaoke.entity.Room;
 import info.kinhho.karaoke.entity.RoomPrice;
 import info.kinhho.karaoke.repository.RoomPriceRepository;
 import info.kinhho.karaoke.repository.RoomRepository;
+import info.kinhho.karaoke.valueobjects.DateType;
 
 @Service
 public class RoomService {
@@ -160,11 +160,11 @@ public class RoomService {
 		return this.roomRepository.findAll();
 	}
 	
-	public RoomPrice getPrice(Integer id) {
+	public RoomPrice getPrice(Long id) {
 		return this.roomPriceRepository.findById(id).get();
 	}
 	
-	public Room getRoom(Integer id) {
+	public Room getRoom(Long id) {
 		
 		return this.roomRepository.findById(id).get();
 	}
@@ -184,7 +184,7 @@ public class RoomService {
 	}
 	
 	public void deletePrice(String id) {
-		this.roomPriceRepository.deleteById(Integer.parseInt(id));
+		this.roomPriceRepository.deleteById(Long.parseLong(id));
 	}
 	
 	public Iterable<Room> getUsed() {
@@ -198,9 +198,9 @@ public class RoomService {
 	
 	public void setDefaultRoom(Room room) {
 		
-		room.setCustomPhone("EMPTY");
-		room.setState("EMPTY");
-		room.setTimeStart(null);
+		room.setCustomerPhone("EMPTY");
+		room.setStatus("EMPTY");
+		room.setCheckIn(null);
 		
 		this.roomRepository.save(room);
 	}
@@ -210,7 +210,6 @@ public class RoomService {
 		System.out.println(this.roomPriceRepository.findAll());
 		
 		List<RoomPrice> prices = this.roomPriceRepository.get();
-		
 		
 		
 		int hourStart = detail.getCheckIn().getHours();

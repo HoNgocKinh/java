@@ -1,11 +1,8 @@
 package info.kinhho.karaoke.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import info.kinhho.karaoke.entity.Account;
 
-public interface AccountRepository extends CrudRepository<Account, Integer> {
+public interface AccountRepository extends BaseRepository<Account> {
 	
 	Account findByUsername(String username);
-	
 }

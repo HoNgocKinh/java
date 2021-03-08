@@ -17,8 +17,6 @@ public class RoomPriceService {
 
 	public void createSeedData() {
 		
-		
-		
 	}
 
 	public Iterable<RoomPrice> get() {
@@ -28,7 +26,7 @@ public class RoomPriceService {
 	
 	public RoomPrice get(String id) {
 		
-		return roomPriceRepository.findById(Integer.parseInt(id)).get();
+		return roomPriceRepository.findById(Long.parseLong(id)).get();
 	}
 	
 	

@@ -1,5 +1,6 @@
 package info.kinhho.karaoke.services;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -46,29 +47,29 @@ public class BillService {
 		BillDetail billDetail = bill.getBillDetails().get(size - 1);
 		
 		Room room = billDetail.getRoom();
-		room.setCustomPhone(bill.getCustomerPhone());
-		room.setState("ORDERED");
+		room.setCustomerPhone(bill.getCustomerPhone());
+		room.setStatus("ORDERED");
 		
 		this.roomRepository.save(room);
 	}
 	 
-	public void setUseRoom(Integer id) {
+	public void setUseRoom(Long id) {
 			
 		BillDetail billDetail = this.billDetailRepository.getByRoomId(id, "NOT");
 		Bill bill = billDetail.getBill();
 		
 		Room room = billDetail.getRoom(); 
 		
-		room.setTimeStart(new Date());
+		room.setCheckIn(ZonedDateTime.now());
 		billDetail.setCheckIn(new Date());
-		room.setState("USED");
+		room.setStatus("USED");
 		
 		this.billRepository.save(bill);
 		this.roomRepository.save(room);
 			
 	}
 	
-	public Bill getBillFromRoomId(Integer id) {
+	public Bill getBillFromRoomId(Long id) {
 		
 		BillDetail detail = this.billDetailRepository.getByRoomId(id, "NOT");
 		return detail.getBill();		
@@ -76,19 +77,19 @@ public class BillService {
 	
 	public void swapRoom(Room from, Room to) {
 		
-		BillDetail detailFrom = this.billDetailRepository.getByRoomId(from.getId(), "NOT");
-		detailFrom.setCheckOut(new Date());
-		detailFrom.setState("PAID");
-				
-		Bill bill = detailFrom.getBill();
-		
-		to.setCustomPhone(from.getCustomPhone());
-		to.setState( from.getState() );
-		to.setTimeStart( new Date());
-		
-		
-		
-		bill.createBillDetail(to);
+//		BillDetail detailFrom = this.billDetailRepository.getByRoomId(from.getId(), "NOT");
+//		detailFrom.setCheckOut(new Date());
+//		detailFrom.set("PAID");
+//				
+//		Bill bill = detailFrom.getBill();
+//		
+//		to.setCustomPhone(from.getCustomPhone());
+//		to.setState( from.getState() );
+//		to.setTimeStart( new Date());
+//		
+//		
+//		
+//		bill.createBillDetail(to);
 	}
 	
 	public BillDetail getBillDetailFromRoomId(Room room) {
@@ -105,8 +106,8 @@ public class BillService {
 		
 		Bill bill = detail.getBill();
 		
-		room.setState("USED");
-		room.setTimeStart(new Date());
+		room.setStatus("USED");
+		room.setCheckIn(ZonedDateTime.now());
 		BillDetail detailNew = bill.createBillDetail(room);
 		detailNew.setCheckIn(new Date());
 		

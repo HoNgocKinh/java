@@ -1,11 +1,9 @@
-package info.kinhho.karaoke.entity;
+package info.kinhho.karaoke.valueobjects;
 
 public class SwapRoom {
 	
 	private String from;
 	private String to;
-	
-	
 	
 	public SwapRoom() {
 		super();

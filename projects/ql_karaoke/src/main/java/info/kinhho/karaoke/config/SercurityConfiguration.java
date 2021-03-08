@@ -32,8 +32,8 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
         http
         	.csrf().disable()
             .authorizeRequests()           	
-//            .anyRequest().authenticated()
-            .anyRequest().anonymous()
+            .anyRequest().authenticated()
+//            .anyRequest().anonymous()
             .and()
             .formLogin()
             	.loginProcessingUrl("/signin")
@@ -43,7 +43,8 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
             	.passwordParameter("password")
             .and()
             .logout()
-            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            	.logoutSuccessUrl("/login");
     }
 	
 	@Bean
