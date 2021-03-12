@@ -1,5 +1,6 @@
-package info.kinhho.karaoke.config;
+package com.example.basic_authen.securiry;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,18 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 
 @Configuration
 @EnableWebSecurity
 public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	private AccountPrincipalDetailsService accountPrincipalDetailsService;
-	
-	public SercurityConfiguration(AccountPrincipalDetailsService accountPrincipalDetailsService) {
-		this.accountPrincipalDetailsService = accountPrincipalDetailsService;
-	}
+	@Autowired
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
@@ -29,29 +25,25 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
-        http
-        	.csrf().disable()
-            .authorizeRequests()           	
-            .anyRequest().authenticated()
-//            .anyRequest().anonymous()
-            .and()
-            .formLogin()
-            	.loginProcessingUrl("/signin")
-            	.loginPage("/login").permitAll()
-            	.defaultSuccessUrl("/home")
-            	.usernameParameter("username")
-            	.passwordParameter("password")
-            .and()
-            .logout()
-            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            	.logoutSuccessUrl("/login");
-    }
+		
+		http
+		.authorizeRequests()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+			.defaultSuccessUrl("/hello")
+	        .permitAll() // Tất cả đều được truy cập vào địa chỉ này
+	        .and()
+        .logout() // 
+        	.permitAll();
+	    
+	}
 	
 	@Bean
     DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(this.accountPrincipalDetailsService);
+        daoAuthenticationProvider.setUserDetailsService(this.userDetailsServiceImpl);
 
         return daoAuthenticationProvider;
     }

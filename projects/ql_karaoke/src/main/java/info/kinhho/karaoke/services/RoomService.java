@@ -5,22 +5,22 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
+import info.kinhho.karaoke.assistants.DateType;
 import info.kinhho.karaoke.entity.BillDetail;
 import info.kinhho.karaoke.entity.Room;
 import info.kinhho.karaoke.entity.RoomPrice;
 import info.kinhho.karaoke.repository.RoomPriceRepository;
 import info.kinhho.karaoke.repository.RoomRepository;
-import info.kinhho.karaoke.valueobjects.DateType;
 
 @Service
 public class RoomService {
 	
-	private RoomRepository roomRepository;
-	private RoomPriceRepository roomPriceRepository; 
+	private RoomRepository repository;
+	private RoomPriceRepository roomPriceRepository;
 	
-	public RoomService(RoomRepository roomRepository, RoomPriceRepository roomPriceRepository) {
+	public RoomService(RoomRepository repository, RoomPriceRepository roomPriceRepository) {
 		this.roomPriceRepository = roomPriceRepository;
-		this.roomRepository = roomRepository;
+		this.repository = repository;
 	}
 	
 	public void createSeedRoomData() {
@@ -58,41 +58,42 @@ public class RoomService {
 		Room roomf38 = new Room("F028","VIP", "EMPTY", 3);
 		Room roomf39 = new Room("F029","VIP", "EMPTY", 3);
 		
-		roomRepository.save(roomf10);
-		roomRepository.save(roomf11);
-		roomRepository.save(roomf12);
-		roomRepository.save(roomf13);
-		roomRepository.save(roomf14);
-		roomRepository.save(roomf15);
-		roomRepository.save(roomf16);
-		roomRepository.save(roomf17);
-		roomRepository.save(roomf18);
-		roomRepository.save(roomf19);
+		repository.save(roomf10);
+		repository.save(roomf11);
+		repository.save(roomf12);
+		repository.save(roomf13);
+		repository.save(roomf14);
+		repository.save(roomf15);
+		repository.save(roomf16);
+		repository.save(roomf17);
+		repository.save(roomf18);
+		repository.save(roomf19);
 		
-		roomRepository.save(roomf20);
-		roomRepository.save(roomf21);
-		roomRepository.save(roomf22);
-		roomRepository.save(roomf23);
-		roomRepository.save(roomf24);
-		roomRepository.save(roomf25);
-		roomRepository.save(roomf26);
-		roomRepository.save(roomf27);
-		roomRepository.save(roomf28);
-		roomRepository.save(roomf29);
+		repository.save(roomf20);
+		repository.save(roomf21);
+		repository.save(roomf22);
+		repository.save(roomf23);
+		repository.save(roomf24);
+		repository.save(roomf25);
+		repository.save(roomf26);
+		repository.save(roomf27);
+		repository.save(roomf28);
+		repository.save(roomf29);
 		
-		roomRepository.save(roomf30);
-		roomRepository.save(roomf31);
-		roomRepository.save(roomf32);
-		roomRepository.save(roomf33);
-		roomRepository.save(roomf34);
-		roomRepository.save(roomf35);
-		roomRepository.save(roomf36);
-		roomRepository.save(roomf37);
-		roomRepository.save(roomf38);
-		roomRepository.save(roomf39);	
+		repository.save(roomf30);
+		repository.save(roomf31);
+		repository.save(roomf32);
+		repository.save(roomf33);
+		repository.save(roomf34);
+		repository.save(roomf35);
+		repository.save(roomf36);
+		repository.save(roomf37);
+		repository.save(roomf38);
+		repository.save(roomf39);	
 	}
 	
 	public void createSeedPriceData() {
+		
 		RoomPrice roomPrice1 = new RoomPrice("NORMAL", 200000, 0, 5, "WEEKEND");
 		RoomPrice roomPrice2 = new RoomPrice("NORMAL", 250000, 5, 10, "WEEKEND");
 		RoomPrice roomPrice3 = new RoomPrice("NORMAL", 80000, 10, 18, "WEEKEND");
@@ -157,7 +158,7 @@ public class RoomService {
 	
 	public Iterable<Room> getRooms() {
 		
-		return this.roomRepository.findAll();
+		return this.repository.findAll();
 	}
 	
 	public RoomPrice getPrice(Long id) {
@@ -166,12 +167,12 @@ public class RoomService {
 	
 	public Room getRoom(Long id) {
 		
-		return this.roomRepository.findById(id).get();
+		return this.repository.findById(id).get();
 	}
 	
 	
 	public Room get(String name) {
-		return this.roomRepository.findByName(name);
+		return this.repository.findByName(name);
 	}
 	
 	public void savePrice(RoomPrice room) {
@@ -188,12 +189,12 @@ public class RoomService {
 	}
 	
 	public Iterable<Room> getUsed() {
-		return this.roomRepository.getUsed();
+		return this.repository.getUsed();
 	}
 	
 	public Iterable<Room> getUnused() {
 		
-		return this.roomRepository.getUnused();
+		return this.repository.getUnused();
 	}
 	
 	public void setDefaultRoom(Room room) {
@@ -202,7 +203,7 @@ public class RoomService {
 		room.setStatus("EMPTY");
 		room.setCheckIn(null);
 		
-		this.roomRepository.save(room);
+		this.repository.save(room);
 	}
 			
 	public double calculatePriceRoom(Room room, BillDetail detail) {
@@ -210,7 +211,6 @@ public class RoomService {
 		System.out.println(this.roomPriceRepository.findAll());
 		
 		List<RoomPrice> prices = this.roomPriceRepository.get();
-		
 		
 		int hourStart = detail.getCheckIn().getHours();
 		

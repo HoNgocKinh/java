@@ -26,10 +26,10 @@
 				<li class="nav-item" th:classappend="${active == 'food'} ? active"><a class="nav-link ml-4"
 					href="/food/">Hàng hóa</a></li>
 					
-				<li class="nav-item" th:classappend="${active == 'producer'} ? active"><a class="nav-link ml-4"
-					href="/producer/">Đối tác</a></li>
+				<li class="nav-item" th:classappend="${active == 'supplier'} ? active"><a class="nav-link ml-4"
+					href="/suppliers/">Đối tác</a></li>
 					
-				<li class="nav-item ml-4" th:classappend="${active == 'inventory'} ? active"><a class="nav-link" href="#">Kho</a>
+				<li class="nav-item ml-4" th:classappend="${active == 'inventory'} ? active"><a class="nav-link" href="/warehouse">Kho</a>
 				</li>
 				
 				<!--  sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_STATISTIC')" -->

@@ -1,4 +1,4 @@
-package info.kinhho.karaoke.valueobjects;
+package info.kinhho.karaoke.assistants;
 
 public class SwapRoom {
 	

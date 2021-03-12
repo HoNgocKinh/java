@@ -1,10 +1,13 @@
 package info.kinhho.karaoke.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import info.kinhho.karaoke.entity.Room;
 
-public interface RoomRepository extends BaseRepository<Room> {
+@Repository
+public interface RoomRepository extends JpaRepository<Room, Long>  {
 	
 	@Query("SELECT r FROM Room r where r.status = 'USED'")
 	public Iterable<Room> getUsed();

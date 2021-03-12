@@ -17,23 +17,23 @@ import info.kinhho.karaoke.repository.RoomRepository;
 @Service
 public class BillService {
 	
-	private BillRepository billRepository;
+	private BillRepository repository;
 	private BillDetailRepository billDetailRepository;
 	private RoomRepository roomRepository;
 	
 	public BillService(
-			BillRepository billRepository,
+			BillRepository repository,
 			RoomRepository roomRepository, 
 			BillDetailRepository billDetailRepository,
 			RoomPriceRepository roomPriceRepository
 	) {
-		this.billRepository = billRepository;
+		this.repository = repository;
 		this.roomRepository = roomRepository;
 		this.billDetailRepository = billDetailRepository;
 	}
 	
 	public void save(Bill bill) {
-		this.billRepository.save(bill);
+		this.repository.save(bill);
 	}
 	
 	public void save(BillDetail billDetail) {
@@ -64,7 +64,7 @@ public class BillService {
 		billDetail.setCheckIn(new Date());
 		room.setStatus("USED");
 		
-		this.billRepository.save(bill);
+		this.repository.save(bill);
 		this.roomRepository.save(room);
 			
 	}
@@ -111,7 +111,7 @@ public class BillService {
 		BillDetail detailNew = bill.createBillDetail(room);
 		detailNew.setCheckIn(new Date());
 		
-		this.billRepository.save(bill);
+		this.repository.save(bill);
 	}
 	
 }

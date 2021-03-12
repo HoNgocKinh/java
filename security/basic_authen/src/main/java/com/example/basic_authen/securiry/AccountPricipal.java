@@ -1,4 +1,4 @@
-package info.kinhho.karaoke.config;
+package com.example.basic_authen.securiry;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,24 +8,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import info.kinhho.karaoke.entity.Account;
+public class AccountPricipal implements UserDetails {
 
-public class AccountPrincipal implements UserDetails {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1l;
 	private Account account;
 	
-	public AccountPrincipal(Account account) {
+	public AccountPricipal(Account account) {
 		this.account = account;
 	}
-
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		//Extract list of permissions (name)
@@ -46,13 +40,13 @@ public class AccountPrincipal implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return this.account.getPassword();
+		return account.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.account.getUsername();
+		return account.getUsername();
 	}
 
 	@Override
@@ -76,7 +70,7 @@ public class AccountPrincipal implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return this.account.getActive() == 1;
+		return true;
 	}
 	
 	

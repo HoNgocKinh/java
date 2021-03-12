@@ -1,26 +1,36 @@
 package info.kinhho.karaoke.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import info.kinhho.karaoke.entity.Supplier;
+import info.kinhho.karaoke.services.SupplierService;
+
 @Controller
-@RequestMapping("producer")
-public class ProducerController {
+@RequestMapping("suppliers")
+public class SupplierController {
 	
-//	@Autowired
-//	private ProducerService producerService;
-//	
-//	@GetMapping(value= {"", "index"})
-//	public String getIndex(Model model) {
-//			
-//		Iterable<Producer> producers = producerService.get();
-//				
-//		model.addAttribute("producers", producers);
-//		model.addAttribute("active", "producer");
-//		
-//		return "producer/index";
-//	}
-//	
+	private SupplierService service;
+	
+	public SupplierController(SupplierService service) {
+		this.service = service;
+	}
+	
+	@GetMapping(value= {"", "index"})
+	public String getIndex(Model model) {
+			
+		List<Supplier> suppliers = service.findAll();
+				
+		model.addAttribute("suppliers", suppliers);
+		model.addAttribute("active", "supplier");
+		
+		return "producer/index";
+	}
+	
 //	
 //	@GetMapping("add")
 //	public String getAdd(Model model) {

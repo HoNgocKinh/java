@@ -27,7 +27,7 @@ public class RoomController {
 //	
 	@RequestMapping(value= {"/", "/home"}, method = RequestMethod.GET)
 	public String home() {
-		
+		log.debug("ACCESS HOME PAGE");
 //		Iterable<Room> rooms = this.roomService.getRooms();		
 		
 //		model.addAttribute("active", "home");
