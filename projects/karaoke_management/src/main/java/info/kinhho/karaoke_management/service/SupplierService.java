@@ -1,8 +1,8 @@
 package info.kinhho.karaoke_management.service;
 
-import info.kinhho.karaoke_management.entities.Supplier;
+import info.kinhho.karaoke_management.dtos.SupplierDTO;
 
-public interface SupplierService extends BaseService<Supplier> {
+public interface SupplierService extends BaseService<SupplierDTO> {
 	
 	
 }

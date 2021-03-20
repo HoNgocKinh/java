@@ -1,14 +1,16 @@
 package info.kinhho.karaoke_management.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import info.kinhho.karaoke_management.dtos.SupplierDTO;
 import info.kinhho.karaoke_management.entities.Supplier;
 import info.kinhho.karaoke_management.repository.SupplierRepository;
 import info.kinhho.karaoke_management.service.SupplierService;
 
 @Service
 public class SupplierServiceImpl 
-		extends BaseServiceImpl<Supplier, SupplierRepository> 
+		extends BaseServiceImpl<Supplier, SupplierDTO, SupplierRepository> 
 		implements SupplierService {
 
 	public SupplierServiceImpl() {}
@@ -31,5 +33,24 @@ public class SupplierServiceImpl
 		repository.save(supplier4);
 		repository.save(supplier5);
 		repository.save(supplier6);
+	}
+
+	
+	@Override
+	public SupplierDTO toDto(Supplier e) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		SupplierDTO d = new SupplierDTO();
+		modelMapper.map(e, d);
+		return d;
+	}
+
+	@Override
+	public Supplier toEntity(SupplierDTO d) {
+		
+		ModelMapper modelMapper = new ModelMapper();
+		Supplier e = new Supplier();
+		modelMapper.map(d, e);
+		return e;
 	}
 }

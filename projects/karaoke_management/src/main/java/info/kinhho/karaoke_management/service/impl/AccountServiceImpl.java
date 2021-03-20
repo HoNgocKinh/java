@@ -2,12 +2,13 @@ package info.kinhho.karaoke_management.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import info.kinhho.karaoke_management.dtos.AccountDTO;
 import info.kinhho.karaoke_management.entities.Account;
 import info.kinhho.karaoke_management.repository.AccountRepository;
 import info.kinhho.karaoke_management.service.AccountService;
 
 @Service
-public class AccountServiceImpl extends BaseServiceImpl<Account, AccountRepository> implements AccountService {
+public class AccountServiceImpl extends BaseServiceImpl<Account, AccountDTO, AccountRepository> implements AccountService {
 
 	public AccountServiceImpl() {
 		
@@ -26,5 +27,17 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, AccountReposito
 		repository.save(account1);
 		repository.save(account2);
 		repository.save(account3);
+	}
+
+	@Override
+	public AccountDTO toDto(Account e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Account toEntity(AccountDTO d) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

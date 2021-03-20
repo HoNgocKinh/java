@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import info.kinhho.karaoke_management.entities.Account;
+import info.kinhho.karaoke_management.dtos.BillDTO;
 import info.kinhho.karaoke_management.entities.Bill;
 import info.kinhho.karaoke_management.entities.BillDetail;
 import info.kinhho.karaoke_management.entities.Room;
@@ -14,7 +14,7 @@ import info.kinhho.karaoke_management.repository.BillRepository;
 import info.kinhho.karaoke_management.repository.RoomRepository;
 
 @Service
-public class BillServiceImpl extends BaseServiceImpl<Bill, BillRepository> {
+public class BillServiceImpl extends BaseServiceImpl<Bill, BillDTO, BillRepository> {
 	
 	private BillDetailRepository billDetailRepository;
 	private RoomRepository roomRepository;
@@ -27,6 +27,7 @@ public class BillServiceImpl extends BaseServiceImpl<Bill, BillRepository> {
 		this.billDetailRepository = billDetailRepository;
 		this.roomRepository = roomRepository;
 	}
+	
 	
 	public void save(Bill bill) {
 		this.repository.save(bill);
@@ -112,5 +113,19 @@ public class BillServiceImpl extends BaseServiceImpl<Bill, BillRepository> {
 	
 	public void createSeedData() {
 		
+	}
+
+
+	@Override
+	public BillDTO toDto(Bill e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Bill toEntity(BillDTO d) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

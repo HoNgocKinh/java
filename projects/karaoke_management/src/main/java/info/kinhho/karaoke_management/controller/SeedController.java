@@ -31,7 +31,7 @@ public class SeedController {
 	@RequestMapping(value = "/seed", method = RequestMethod.GET)
 	public String seedData() {
 		
-		this.accountService.createSeedData();
+//		this.accountService.createSeedData();
 		this.supplierService.createSeedData();
 		this.roomPriceService.createSeedData();
 		this.roomService.createSeedData();

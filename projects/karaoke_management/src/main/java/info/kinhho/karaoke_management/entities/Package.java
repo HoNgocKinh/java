@@ -18,6 +18,9 @@ public class Package extends BaseEntity {
 	@Column(name = "exp_at")
 	private ZonedDateTime expAt;
 
+	@Column(name = "package_code")
+	private String packageCode;
+	
 	public String getStatus() {
 		return status;
 	}

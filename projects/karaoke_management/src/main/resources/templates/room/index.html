@@ -1,705 +1,182 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script th:src="@{js/jquery.js}"></script>    
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
-    <script th:src="@{js/popper.min.js}"></script>
-    <script th:src="@{js/bootstrap.min.js}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet" />
+
+<head th:insert="layouts/layout.html::header"></head>
+<title>Rooms</title>
 </head>
+
 <body>
 	<div th:insert="layouts/layout.html::nav"></div>
-	
-    <div class="container-fluid pt-3">
-        <div class="row">
-            <div class="col-8" style="height: calc(100% - 50px); overflow: hidden;">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            	<div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                    	<div class="card">
-                            <div class="card-header">
-                                <span class=""><i class="fas fa-crown text-warning"></i>  VIP</span>
-                                <span class="float-right">40 <i class="fa fa-users"></i></span>
-                            </div>
-                            <div class="card-body clearfix">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <span class="">F110</span>
-                                        <span class="float-right">500K/h</span>
-                                    </div>
-                                </div>
-                                <div class="row clearfix pt-2">
-                                    <div class="col-12">
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Book Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Open Room</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Order Services</a>
-                                              <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="btn btn-primary btn-sm">READY</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                Customer: <b>Hồ Ngọc Kính</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-            </div>
-            <div class="col-auto">
-                Another side
-            </div>
-        </div>
-    </div>
+	<p></p>
+	<div class="container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item"><a class="nav-link active" id="home-tab"
+				data-toggle="tab" href="#room" role="tab" aria-controls="room"
+				aria-selected="true">Rooms</a></li>
+			<li class="nav-item"><a class="nav-link" id="profile-tab"
+				data-toggle="tab" href="#roomPrice" role="tab"
+				aria-controls="roomPrice" aria-selected="false">Room's Price</a></li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="room" role="tabpanel"
+				aria-labelledby="room-tab">
+				<div class="container">
+					<p></p>
+					<div class="row">
+						<div class="col">
+							<h4 class="d-inline">Total:</h4>
+							<span th:utext="${rooms.size().toString() + ' Records'}"><span />
+						</div>
+						<div class="col-1 p-0 mr-0">
+							<button class="btn btn-sm btn-primary float-right"
+								onclick="openAddModal('Room')" data-toggle="tooltip" title="Add">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+						<div class="col-3">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control form-control-sm"
+									placeholder="Searching...">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary btn-sm" type="button">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col overflow-hidden"
+							style="height: calc(100vh - 220px);">
+							<div class="table-reponsive h-100" style="overflow: auto;">
+								<table class="table table-hover table-stripped">
+									<thead class="thead-dark">
+										<tr>
+											<th>#</th>
+											<th>Name</th>
+											<th>Floor</th>
+											<th>Type</th>
+											<th>Capacity</th>
+											<th>Total Times Ordered</th>
+											<th>Updated At</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<th:block th:each="room, state : ${rooms}">
+											<tr>
+												<td th:utext="${state.index + 1}"></td>
+												<td th:utext="${room.getName()}"></td>
+												<td th:utext="${room.getFloor()}"></td>
+												<td th:utext="${room.getType()}"></td>
+												<td th:utext="${room.getCapacity()}"></td>
+												<td></td>
+												<td th:utext="${room.getUpdatedAt()}"></td>
+												<td>
+													<button class="btn btn-sm btn-secondary"
+														data-toggle="tooltip" title="Edit">
+														<i class="fa fa-edit"></i>
+													</button>
+													<button class="btn btn-sm btn-danger" data-toggle="tooltip"
+														title="Delete">
+														<i class="fa fa-trash"></i>
+													</button>
+													<button class="btn btn-sm btn-warning"
+														data-toggle="tooltip" title="Unactive">
+														<i class="fa fa-lock"></i>
+													</button>
+												</td>
+											</tr>
+										</th:block>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="roomPrice" role="tabpanel"
+				aria-labelledby="roomPrice-tab">
+				<div class="container">
+					<p></p>
+					<div class="row">
+						<div class="col">
+							<h4 class="d-inline">Total:</h4>
+							<span th:utext="${roomPrices.size().toString() + ' Records'}"><span />
+						</div>
+						<div class="col-1 p-0 mr-0">
+							<button class="btn btn-sm btn-primary float-right"
+								data-toggle="tooltip" title="Add">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+						<div class="col-3">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control form-control-sm"
+									placeholder="Searching...">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary btn-sm" type="button">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col overflow-hidden"
+							style="height: calc(100vh - 220px);">
+							<div class="table-reponsive h-100" style="overflow: auto;">
+								<table class="table table-hover">
+									<thead class="thead-dark">
+										<tr>
+											<th>#</th>
+											<th>Check In(Hour)</th>
+											<th>Check Out(Hour)</th>
+											<th>Capacity</th>
+											<th>Price</th>
+											<th>Type Day</th>
+											<th>Type Room</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<th:block th:each="roomPrice, state : ${roomPrices}">
+											<tr>
+												<td th:utext="${state.index + 1}"></td>
+												<td th:utext="${roomPrice.getCheckIn()}"></td>
+												<td th:utext="${roomPrice.getCheckOut()}"></td>
+												<td th:utext="${roomPrice.getCapacity()}"></td>
+												<td th:utext="${roomPrice.getPrice()}"></td>
+												<td th:utext="${roomPrice.getTypeDay()}"></td>
+												<td th:utext="${roomPrice.getTypeRoom()}"></td>
+												<td>
+													<button class="btn btn-sm btn-secondary"
+														data-toggle="tooltip" title="Edit">
+														<i class="fa fa-edit"></i>
+													</button>
+													<button class="btn btn-sm btn-danger" data-toggle="tooltip"
+														title="Delete">
+														<i class="fa fa-trash"></i>
+													</button>
+													<button class="btn btn-sm btn-warning"
+														data-toggle="tooltip" title="Unactive">
+														<i class="fa fa-lock"></i>
+													</button>
+												</td>
+											</tr>
+										</th:block>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<body th:insert="layouts/layout.html::footer"></body>
 </body>
+
 </html>

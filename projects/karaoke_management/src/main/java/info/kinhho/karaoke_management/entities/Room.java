@@ -9,9 +9,11 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -54,10 +56,14 @@ public class Room extends BaseEntity {
 	@Column(name = "staff_open_room")
 	private Account staffOpenRoom;
 	
-	@OneToOne(mappedBy = "room")
-	private RoomPrice roomPrice;
+	@ManyToMany
+	@JoinTable(
+			name = "room_room_price", 
+			joinColumns = @JoinColumn(name = "room_id"),
+			inverseJoinColumns = @JoinColumn(name = "room_price_id"))
+	private List<RoomPrice> roomPrices = new ArrayList<RoomPrice>();
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "room_id", referencedColumnName = "id")
 	private List<BookRoom> bookRooms = new ArrayList<BookRoom>();
 	
@@ -78,6 +84,14 @@ public class Room extends BaseEntity {
 		this.customerPhone = "EMPTY";
 	}
 	
+	public List<RoomPrice> getRoomPrices() {
+		return roomPrices;
+	}
+
+	public void setRoomPrices(List<RoomPrice> roomPrices) {
+		this.roomPrices = roomPrices;
+	}
+
 	public int getFloor() {
 		return floor;
 	}
@@ -139,14 +153,6 @@ public class Room extends BaseEntity {
 		this.staffOpenRoom = staffOpenRoom;
 	}
 
-	public RoomPrice getRoomPrice() {
-		return roomPrice;
-	}
-
-	public void setRoomPrice(RoomPrice roomPrice) {
-		this.roomPrice = roomPrice;
-	}
-	
 	public List<BookRoom> getBookRooms() {
 		return bookRooms;
 	}

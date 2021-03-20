@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import info.kinhho.karaoke_management.dtos.ProductDTO;
 import info.kinhho.karaoke_management.entities.Product;
 import info.kinhho.karaoke_management.repository.ProductRepository;
 import info.kinhho.karaoke_management.repository.SupplierRepository;
 
 @Service
-public class ProductServiceImpl extends BaseServiceImpl<Product, ProductRepository> {
+public class ProductServiceImpl extends BaseServiceImpl<Product, ProductDTO, ProductRepository> {
 
 //	private SupplierRepository supplierRepository;
 
@@ -30,5 +31,17 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, ProductReposito
 
 	public void createSeedData() {
 
+	}
+
+	@Override
+	public ProductDTO toDto(Product e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product toEntity(ProductDTO d) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

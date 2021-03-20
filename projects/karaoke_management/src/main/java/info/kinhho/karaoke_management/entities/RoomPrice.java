@@ -1,9 +1,11 @@
 package info.kinhho.karaoke_management.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,9 +32,8 @@ public class RoomPrice extends BaseEntity {
 	@Column(name = "capacity")
 	private int capacity;
 	
-	@OneToOne
-	@JoinColumn(name = "room_id", referencedColumnName = "id")
-	private Room room;
+	@ManyToMany(mappedBy = "roomPrices")
+	private List<Room> rooms = new ArrayList<Room>();
 	
 	public RoomPrice() {
 				
@@ -101,12 +102,12 @@ public class RoomPrice extends BaseEntity {
 		return "Ngày lễ";
 	}
 	
-	public Room getRoom() {
-		return room;
+	public List<Room> getRooms() {
+		return rooms;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	public int getCapacity() {
