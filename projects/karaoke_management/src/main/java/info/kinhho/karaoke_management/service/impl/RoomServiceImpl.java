@@ -358,16 +358,4 @@ public class RoomServiceImpl extends BaseServiceImpl<Room, RoomDTO, RoomReposito
 		System.out.println("Price: " + price);
 		return 0;
 	}
-
-	@Override
-	public RoomDTO toDto(Room e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Room toEntity(RoomDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

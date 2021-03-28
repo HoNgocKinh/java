@@ -1,7 +1,14 @@
 package info.kinhho.karaoke_management.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +26,10 @@ public class Supplier extends BaseEntity {
 	@Column(name = "address")
 	private String address;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "supplier_id", referencedColumnName = "id")
+	private List<Package> packages = new ArrayList<Package>();
+	
 	public Supplier() {}
 	
 	public Supplier(String name, String phone, String address) {

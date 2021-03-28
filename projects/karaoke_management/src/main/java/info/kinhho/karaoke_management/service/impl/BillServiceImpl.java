@@ -114,18 +114,4 @@ public class BillServiceImpl extends BaseServiceImpl<Bill, BillDTO, BillReposito
 	public void createSeedData() {
 		
 	}
-
-
-	@Override
-	public BillDTO toDto(Bill e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Bill toEntity(BillDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

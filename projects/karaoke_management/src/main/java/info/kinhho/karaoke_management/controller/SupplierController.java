@@ -1,9 +1,5 @@
 package info.kinhho.karaoke_management.controller;
 
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Objects;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +22,10 @@ public class SupplierController {
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	public String index(Model model) {
 		
-		List<SupplierDTO> suppliers = supplierService.findAllByActive(true);
-		
-		model.addAttribute("suppliers", suppliers);
-		model.addAttribute("active", "supplier");
+//		List<SupplierDTO> suppliers = supplierService.findAllByActive(true);
+//		
+//		model.addAttribute("suppliers", suppliers);
+//		model.addAttribute("active", "supplier");
 		
 		return "supplier/index";
 	}
@@ -37,20 +33,20 @@ public class SupplierController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String save(SupplierDTO dtoForm) {
 		
-		if (Objects.isNull(dtoForm.getId())) {
-			dtoForm.setCreatedAt(ZonedDateTime.now());
-			dtoForm.setUpdateAt(ZonedDateTime.now());
-			dtoForm.setActive(true);
-			supplierService.save(dtoForm);
-		}
-		else {
-			SupplierDTO supplierDTO = supplierService.findById(dtoForm.getId());
-			supplierDTO.setName(dtoForm.getName());
-			supplierDTO.setPhone(dtoForm.getPhone());
-			supplierDTO.setAddress(dtoForm.getAddress());
-			supplierDTO.setUpdateAt(ZonedDateTime.now());
-			supplierService.save(supplierDTO);
-		}
+//		if (Objects.isNull(dtoForm.getId())) {
+//			dtoForm.setCreatedAt(ZonedDateTime.now());
+//			dtoForm.setUpdateAt(ZonedDateTime.now());
+//			dtoForm.setActive(true);
+//			supplierService.save(dtoForm);
+//		}
+//		else {
+//			SupplierDTO supplierDTO = supplierService.findById(dtoForm.getId());
+//			supplierDTO.setName(dtoForm.getName());
+//			supplierDTO.setPhone(dtoForm.getPhone());
+//			supplierDTO.setAddress(dtoForm.getAddress());
+//			supplierDTO.setUpdateAt(ZonedDateTime.now());
+//			supplierService.save(supplierDTO);
+//		}
 		return "redirect:/suppliers";
 	}
 	

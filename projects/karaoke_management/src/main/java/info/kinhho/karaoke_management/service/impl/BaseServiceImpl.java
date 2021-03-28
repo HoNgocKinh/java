@@ -1,7 +1,6 @@
 package info.kinhho.karaoke_management.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +9,7 @@ import info.kinhho.karaoke_management.entities.BaseEntity;
 import info.kinhho.karaoke_management.repository.BaseRepository;
 import info.kinhho.karaoke_management.service.BaseService;
 
-public abstract class BaseServiceImpl <E extends BaseEntity, D extends BaseDTO, R extends BaseRepository<E>> implements BaseService<D> {
+public abstract class BaseServiceImpl <E extends BaseEntity, D extends BaseDTO, R extends BaseRepository<E>> implements BaseService<E> {
 
 	@Autowired
 	protected R repository;
@@ -20,42 +19,32 @@ public abstract class BaseServiceImpl <E extends BaseEntity, D extends BaseDTO, 
 	public BaseServiceImpl(R repository) {
 		this.repository = repository;
 	}
-	
-	public abstract D toDto(E e);
-	public abstract E toEntity(D d);
-	
+
 	@Override
-	public List<D> findAll() {
+	public List<E> findAll() {
 		
-		return convertListDto(repository.findAll());
+		return repository.findAll();
 	}
 	
-	public List<D> findAllByActive(boolean active) {
-		return convertListDto(repository.findAllByActive(active));
+	public List<E> findAllByActive(boolean active) {
+		return repository.findAllByActive(active);
 	}
 	
-	public D findById(Long id) {
-		return toDto(repository.findById(id).get());
+	public E findById(Long id) {
+		return repository.findById(id).get();
 	}
 	
-	public List<D> findAllByIds(List<Long> ids) {
-		return convertListDto(repository.findAllById(ids));
-	}
-	
-	public void save(D d) {
-		E e = toEntity(d);
-		repository.save(e);
-	}
-	
-	public void update(D d) {
-		E e = toEntity(d);
-		repository.save(e);
+	public List<E> findAllByIds(List<Long> ids) {
+		return repository.findAllById(ids);
 	}
 	
 	public void update(E e) {
 		repository.save(e);
 	}
 	
+	public void save(E e) {
+		repository.save(e);
+	}
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
@@ -79,7 +68,8 @@ public abstract class BaseServiceImpl <E extends BaseEntity, D extends BaseDTO, 
 		});
 	}
 	
-	private List<D> convertListDto(List<E> entities) {
-		return entities.stream().parallel().map(this::toDto).collect(Collectors.toList());
-	}
+//	private List<D> convertListDto(List<E> entities) {
+//		if (Objects.isNull(entities)) return null;
+//		return entities.stream().parallel().map(this::toDto).collect(Collectors.toList());
+//	}
 }

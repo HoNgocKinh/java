@@ -28,16 +28,4 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, AccountDTO, Acc
 		repository.save(account2);
 		repository.save(account3);
 	}
-
-	@Override
-	public AccountDTO toDto(Account e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Account toEntity(AccountDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

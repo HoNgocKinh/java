@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import info.kinhho.karaoke_management.dtos.BaseDTO;
+import info.kinhho.karaoke_management.entities.BaseEntity;
 
 @Service
-public interface BaseService <D extends BaseDTO>{
+public interface BaseService <E extends BaseEntity>{
 
-	public List<D> findAll();
-	public List<D> findAllByActive(boolean active);
-	public D findById(Long id);
-	public List<D> findAllByIds(List<Long> ids);
-	public void save(D e);
-	public void update(D e);
+	public List<E> findAll();
+	public List<E> findAllByActive(boolean active);
+	public E findById(Long id);
+	public List<E> findAllByIds(List<Long> ids);
+	public void save(E e);
+	public void update(E e);
 	public void delete(Long id);
 	public void deleteAll();
 	public void unactive(Long id);

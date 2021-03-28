@@ -16,18 +16,4 @@ public class BillDetailServiceImpl extends BaseServiceImpl<BillDetail, BillDetai
 	public void createSeedData() {
 		
 	}
-
-	@Override
-	public BillDetailDTO toDto(BillDetail e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BillDetail toEntity(BillDetailDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 }

@@ -141,38 +141,169 @@
 					<div class="container">
 						<div class="col">
 							<form action="/suppliers/add" method="POST" class="form-signin">
-								<input type="hidden" name="id" id="m_id"/>
+								<input type="hidden" name="id" id="m_id" />
 
 								<div class="form-group">
-									<input type="text"
-									id="m_name"
-									name="name"
-									placeholder="Name..."
-									class="form-control"/>
+									<input type="text" id="m_name" name="name"
+										placeholder="Name..." class="form-control" />
 								</div>
 
 								<div class="form-group">
-									<input type="text"
-									id="m_phone"
-									placeholder="Phone..."
-									class="form-control" name="phone" />
+									<input type="text" id="m_phone" placeholder="Phone..."
+										class="form-control" name="phone" />
 								</div>
 
 								<div class="form-group">
-									<input type="text" placeholder="Address..." 
-									id="m_address"
-									class="form-control"
-									name="address"/>
+									<input type="text" placeholder="Address..." id="m_address"
+										class="form-control" name="address" />
 								</div>
-								<button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
-								<input
-								id="m_submit"
-								type="submit" 
-								class="btn btn-success float-right mr-2"
-								value="Create"/>
+								<button type="button" class="btn btn-danger float-right"
+									data-dismiss="modal">Close</button>
+								<input id="m_submit" type="submit"
+									class="btn btn-success float-right mr-2" value="Create" />
 							</form>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="stock" class="modal" id="stock">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Stock Information</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100"> Package Code: <input type="text"
+										id="m_packageCode" name="packageCode" value="F0001"
+										class="form-control" placeholder="Package Code..." />
+									</label>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100"> Suppliers: <select
+										name="supplier" class="form-control" id="m_supplier">
+											<option th:each="supplier, state : ${suppliers}"
+												th:utext="${supplier.name}" th:value="${supplier.id}"></option>
+									</select>
+									</label>
+								</div>
+							</div>
+							<div class="col">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100">Status: <select name="status"
+										class="form-control" id="m_status">
+											<option value="DEPT">DEPT</option>
+											<option value="PAID">PAID</option>
+									</select>
+									</label>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100">Bought Price <input type="text"
+										readonly class="form-control" name="boughtPrice"
+										id="m_boughtPrice" value="0" />
+									</label>
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100">Sell Price <input type="text"
+										readonly class="form-control" name="sellPrice"
+										id="m_sellPrice" value="0" />
+									</label>
+								</div>
+							</div>
+						</div>
+						<hr />
+
+						<div class="row">
+							<div class="col-2 pr-0">
+								<label class="small">Product Name</label>
+							</div>
+							<div class="col pr-0">
+								<label class="small">Quantity</label>
+							</div>
+							<div class="col-2 pr-0">
+								<label class="small">Expired At</label>
+							</div>
+							<div class="col pr-0">
+								<label class="small">Type</label>
+							</div>
+							<div class="col pr-0">
+								<label class="small">Unit</label>
+							</div>
+							<div class="col pr-0">
+								<label class="small">Bought Price</label>
+							</div>
+							<div class="col pr-0">
+								<label class="small">Sell Price</label>
+							</div>
+							<div class="col p-0 d-flex justify-content-center pb-1">
+								<button type="button" class="btn btn-success btn-sm"
+									onclick="dupplicateInput(event)">
+									<i class="fa fa-plus"></i>
+								</button>
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2 pr-0">
+								<input type="text" class="form-control product"
+									value="Hamberger" />
+							</div>
+							<div class="col pr-0">
+								<input type="text" class="form-control product" value="150" />
+							</div>
+							<div class="col-2 pr-0">
+								<input type="date" class="form-control product" onchange="getLastExpiredDate()"/>
+							</div>
+							<div class="col pr-0">
+								<select class="form-control product">
+									<option value="FOOD">Food</option>
+									<option value="DRINK">Drink</option>
+								</select>
+							</div>
+							<div class="col pr-0">
+								<input type="text" class="form-control product" />
+							</div>
+							<div class="col pr-0">
+								<input type="text" class="form-control product boughtPrice" onchange="addPrice('boughtPrice', this.value)"/>
+							</div>
+							<div class="col pr-0">
+								<input type="text" class="form-control product sellPrice" onchange="addPrice('sellPrice', this.value)"/>
+							</div>
+							<div class="col p-0 d-flex justify-content-center">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success mr-2"
+					onclick="addPackage(event)">Create</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>

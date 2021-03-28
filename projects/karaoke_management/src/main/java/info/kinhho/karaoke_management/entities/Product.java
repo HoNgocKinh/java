@@ -17,14 +17,17 @@ public class Product extends BaseEntity {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "quanlity")
-	private int quanlity;
+	@Column(name = "quantity")
+	private int quantity;
 	
 	@Column(name = "unit")
 	private String unit;
 	
-	@Column(name = "price")
-	private int price;
+	@Column(name = "bought_price")
+	private double boughtPrice;
+	
+	@Column(name = "sell_price")
+	private double sellPrice;
 	
 	@Column(name = "type")
 	private String type;
@@ -37,11 +40,10 @@ public class Product extends BaseEntity {
 	
 	public Product() { }
 
-	public Product(String name, String type, int quanlity, String unit, int price) {
+	public Product(String name, String type, int quantity, String unit) {
 
 		this.name = name;
-		this.price = price;
-		this.quanlity = quanlity;
+		this.quantity = quantity;
 		this.unit = unit;
 		this.type = type;
 	}
@@ -54,14 +56,6 @@ public class Product extends BaseEntity {
 		this.name = name;
 	}
 	
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	
 	public String getType() {
 		return type;
 	}
@@ -70,12 +64,28 @@ public class Product extends BaseEntity {
 		this.type = type;
 	}
 
-	public int getQuanlity() {
-		return quanlity;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setQuanlity(int quanlity) {
-		this.quanlity = quanlity;
+	public List<PackageProduct> getPackageProducts() {
+		return packageProducts;
+	}
+
+	public void setPackageProducts(List<PackageProduct> packageProducts) {
+		this.packageProducts = packageProducts;
+	}
+
+	public List<DetailProduct> getDetail_products() {
+		return detail_products;
+	}
+
+	public void setDetail_products(List<DetailProduct> detail_products) {
+		this.detail_products = detail_products;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	public String getUnit() {
@@ -101,6 +111,23 @@ public class Product extends BaseEntity {
 		this.detail_products.add(detail_product);
 	}
 	
+	
+	public double getBoughtPrice() {
+		return boughtPrice;
+	}
+
+	public void setBoughtPrice(double boughtPrice) {
+		this.boughtPrice = boughtPrice;
+	}
+
+	public double getSellPrice() {
+		return sellPrice;
+	}
+
+	public void setSellPrice(double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
 	public String displayTypeFood() {
 		if (type.equals("Food")) {
 			return "Thức ăn";
@@ -110,7 +137,7 @@ public class Product extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Product [name=" + name + ", quanlity=" + quanlity + ", unit=" + unit + ", price=" + price + ", type="
+		return "Product [name=" + name + ", quantity=" + quantity + ", unit=" + unit + ", type="
 				+ type + ", packageProducts=" + packageProducts + ", detail_products=" + detail_products + "]";
 	}
 }

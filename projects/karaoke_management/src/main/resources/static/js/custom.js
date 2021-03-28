@@ -1,5 +1,4 @@
 
-
 function openModal(id, objectStr, actionName) {
 		
 	if (!!objectStr) {

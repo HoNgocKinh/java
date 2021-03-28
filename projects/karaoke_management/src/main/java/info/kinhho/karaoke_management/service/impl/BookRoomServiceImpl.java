@@ -16,16 +16,4 @@ public class BookRoomServiceImpl extends BaseServiceImpl<BookRoom, BookRoomDTO, 
 	public void createSeedData() {
 		
 	}
-
-	@Override
-	public BookRoomDTO toDto(BookRoom e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BookRoom toEntity(BookRoomDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

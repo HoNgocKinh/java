@@ -13,17 +13,4 @@ public class DetailProductServiceImpl extends BaseServiceImpl<DetailProduct, Det
 	public void createSeedData() {
 
 	}
-
-	@Override
-	public DetailProductDTO toDto(DetailProduct e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DetailProduct toEntity(DetailProductDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

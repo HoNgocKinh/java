@@ -29,16 +29,4 @@ public class RoomPriceServiceImpl
 	public void createSeedData() {
 
 	}
-
-	@Override
-	public RoomPriceDTO toDto(RoomPrice e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RoomPrice toEntity(RoomPriceDTO d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

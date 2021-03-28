@@ -1,9 +1,13 @@
 package info.kinhho.karaoke_management.entities;
 
-import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,12 +18,21 @@ public class Package extends BaseEntity {
 	
 	@Column(name = "status")
 	private String status;
-	
-	@Column(name = "exp_at")
-	private ZonedDateTime expAt;
 
 	@Column(name = "package_code")
 	private String packageCode;
+	
+	@Column(name = "bought_price")
+	private double boughtPrice;
+	
+	@Column(name = "sell_price")
+	private double sellPrice;
+	
+	@OneToMany(mappedBy = "packagez", fetch = FetchType.LAZY)
+	private List<PackageProduct> packageProducts = new ArrayList<PackageProduct>();
+	
+	@ManyToOne
+	private Supplier supplier;
 	
 	public String getStatus() {
 		return status;
@@ -29,11 +42,35 @@ public class Package extends BaseEntity {
 		this.status = status;
 	}
 
-	public ZonedDateTime getExpAt() {
-		return expAt;
+	public String getPackageCode() {
+		return packageCode;
 	}
 
-	public void setExpAt(ZonedDateTime expAt) {
-		this.expAt = expAt;
+	public void setPackageCode(String packageCode) {
+		this.packageCode = packageCode;
+	}
+
+	public double getBoughtPrice() {
+		return boughtPrice;
+	}
+
+	public void setBoughtPrice(double boughtPrice) {
+		this.boughtPrice = boughtPrice;
+	}
+
+	public double getSellPrice() {
+		return sellPrice;
+	}
+
+	public void setSellPrice(double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
 	}
 }

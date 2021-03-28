@@ -21,8 +21,8 @@ public class DetailProduct extends BaseEntity {
 	@JoinColumn(name="product_id")
 	private Product product;
 	
-	@Column(name = "quanlity")
-	private int quanlity;
+	@Column(name = "quantity")
+	private int quantity;
 		
 	/**
 	 * for food form!
@@ -32,10 +32,10 @@ public class DetailProduct extends BaseEntity {
 	@Transient
 	private String roomName;
 	
-	public DetailProduct(BillDetail detail, Product product, int quanlity) {
+	public DetailProduct(BillDetail detail, Product product, int quantity) {
 		this.billDetail = detail;
 		this.product = product;
-		this.quanlity = quanlity;
+		this.quantity = quantity;
 	}
 	
 	public DetailProduct(String roomName) {
@@ -44,9 +44,9 @@ public class DetailProduct extends BaseEntity {
 	
 	public DetailProduct() { }
 
-	public DetailProduct(Product product, int quanlity) {
+	public DetailProduct(Product product, int quantity) {
 		this.product = product;
-		this.quanlity = quanlity;
+		this.quantity = quantity;
 	}
 
 	public BillDetail getBillDetail() {
@@ -65,12 +65,12 @@ public class DetailProduct extends BaseEntity {
 		this.product = product;
 	}
 
-	public int getQuanlity() {
-		return quanlity;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setQuanlity(int quanlity) {
-		this.quanlity = quanlity;
+	public void setQuantity(int quanlity) {
+		this.quantity = quanlity;
 	}
 
 	public String getListFood() {
@@ -91,7 +91,7 @@ public class DetailProduct extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "DetailFood [billDetailId=" + billDetail.getId() + ", productId=" + product.getId() + ", quanlity=" + quanlity + "]";
+		return "DetailFood [billDetailId=" + billDetail.getId() + ", productId=" + product.getId() + ", quantity=" + quantity + "]";
 	}
 	
 }
