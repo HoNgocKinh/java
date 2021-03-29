@@ -69,6 +69,12 @@ public class BookRoom extends BaseEntity {
 	}
 
 	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	@Override
 	public String toString() {
 		return "BookRoom [room=" + room + ", account=" + account + ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", customerPhone=" + customerPhone + "]";

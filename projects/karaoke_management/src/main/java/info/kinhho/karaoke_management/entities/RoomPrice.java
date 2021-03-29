@@ -119,6 +119,12 @@ public class RoomPrice extends BaseEntity {
 	}
 
 	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	@Override
 	public String toString() {
 		return "Room_Price [id=" + id + ", typeRoom=" + typeRoom + ", price=" + price + ", checkIn=" + checkIn
 				+ ", checkOut=" + checkOut + ", typeDay=" + typeDay + "]";

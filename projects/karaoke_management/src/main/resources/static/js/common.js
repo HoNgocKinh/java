@@ -1,6 +1,11 @@
 
-function openModal(id, objectStr, actionName) {
+function openModal(id, objectStr, actionName, setUpDefault = false) {
 		
+	if (setUpDefault) {
+		// implements at each screen. ex: warehouse/index.html
+		setUpDefaultModal();
+	}
+	
 	if (!!objectStr) {
 		let object = JSON.parse(objectStr);
 		Object.keys(object).forEach(k => {

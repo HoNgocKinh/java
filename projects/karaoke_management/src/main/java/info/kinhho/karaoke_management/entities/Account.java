@@ -140,6 +140,12 @@ public class Account extends BaseEntity {
 	public void setBookRooms(List<BookRoom> bookRooms) {
 		this.bookRooms = bookRooms;
 	}
+	
+	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
 
 	@Override
 	public String toString() {

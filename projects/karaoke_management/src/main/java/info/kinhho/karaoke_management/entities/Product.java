@@ -1,10 +1,13 @@
 package info.kinhho.karaoke_management.entities;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,9 +19,6 @@ public class Product extends BaseEntity {
 	
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "quantity")
-	private int quantity;
 	
 	@Column(name = "unit")
 	private String unit;
@@ -32,18 +32,26 @@ public class Product extends BaseEntity {
 	@Column(name = "type")
 	private String type;
 	
-	@OneToMany(mappedBy = "product")
-	private List<PackageProduct> packageProducts = new ArrayList<PackageProduct>();
+	@Column(name = "expired_at")
+	private ZonedDateTime expiredAt;
+	
+	@Column(name = "quantity")
+	private int quantity;
+	
+	@Column(name = "image")
+	private String image;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Package packagez;
 	
 	@OneToMany(mappedBy = "product")
 	private List<DetailProduct> detail_products = new ArrayList<DetailProduct>();
 	
 	public Product() { }
 
-	public Product(String name, String type, int quantity, String unit) {
+	public Product(String name, String type, String unit) {
 
 		this.name = name;
-		this.quantity = quantity;
 		this.unit = unit;
 		this.type = type;
 	}
@@ -64,28 +72,12 @@ public class Product extends BaseEntity {
 		this.type = type;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public List<PackageProduct> getPackageProducts() {
-		return packageProducts;
-	}
-
-	public void setPackageProducts(List<PackageProduct> packageProducts) {
-		this.packageProducts = packageProducts;
-	}
-
 	public List<DetailProduct> getDetail_products() {
 		return detail_products;
 	}
 
 	public void setDetail_products(List<DetailProduct> detail_products) {
 		this.detail_products = detail_products;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 	
 	public String getUnit() {
@@ -127,6 +119,30 @@ public class Product extends BaseEntity {
 	public void setSellPrice(double sellPrice) {
 		this.sellPrice = sellPrice;
 	}
+	
+	public String getExpiredAt() {
+		return expiredAt.format(formatter);
+	}
+
+	public void setExpiredAt(ZonedDateTime expiredAt) {
+		this.expiredAt = expiredAt;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Package getPackagez() {
+		return packagez;
+	}
+
+	public void setPackagez(Package packagez) {
+		this.packagez = packagez;
+	}
 
 	public String displayTypeFood() {
 		if (type.equals("Food")) {
@@ -135,9 +151,18 @@ public class Product extends BaseEntity {
 		return "Nước uống";
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
-	public String toString() {
-		return "Product [name=" + name + ", quantity=" + quantity + ", unit=" + unit + ", type="
-				+ type + ", packageProducts=" + packageProducts + ", detail_products=" + detail_products + "]";
+	public String getJsonObject() {
+
+		return String.format("{\"id\": %d, \"name\": \"%s\", \"unit\": \"%s\", \"boughtPrice\": %f, \"sellPrice\": %f, \"type\": \"%s\", \"expiredAt\": \"%s\", \"quantity\": %d, \"image\": \"%s\"}",
+				id, name, unit, boughtPrice, sellPrice, type, expiredAt, quantity, image);
 	}
 }

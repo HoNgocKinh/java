@@ -88,6 +88,12 @@ public class DetailProduct extends BaseEntity {
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
+	
+	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
 
 	@Override
 	public String toString() {

@@ -1,19 +1,14 @@
 package info.kinhho.karaoke_management.service.impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import info.kinhho.karaoke_management.dtos.SupplierDTO;
 import info.kinhho.karaoke_management.entities.Supplier;
 import info.kinhho.karaoke_management.repository.SupplierRepository;
 import info.kinhho.karaoke_management.service.SupplierService;
 
 @Service
 public class SupplierServiceImpl 
-		extends BaseServiceImpl<Supplier, SupplierDTO, SupplierRepository> 
+		extends BaseServiceImpl<Supplier, SupplierRepository> 
 		implements SupplierService {
 
 	public SupplierServiceImpl() {}
@@ -36,20 +31,5 @@ public class SupplierServiceImpl
 		repository.save(supplier4);
 		repository.save(supplier5);
 		repository.save(supplier6);
-	}
-
-	@Override
-	public List<SupplierDTO> findAllByActive_DTO(boolean active) {
-
-		return this.findAllByActive(active).stream().parallel().map(this::toDto).collect(Collectors.toList());
-	}
-	
-
-	private SupplierDTO toDto(Supplier entity) {
-		
-		ModelMapper modelMapper = new ModelMapper();
-		SupplierDTO dto = new SupplierDTO();
-		modelMapper.map(entity, dto);
-		return dto;
 	}
 }

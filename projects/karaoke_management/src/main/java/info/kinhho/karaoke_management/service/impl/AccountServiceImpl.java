@@ -2,13 +2,12 @@ package info.kinhho.karaoke_management.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import info.kinhho.karaoke_management.dtos.AccountDTO;
 import info.kinhho.karaoke_management.entities.Account;
 import info.kinhho.karaoke_management.repository.AccountRepository;
 import info.kinhho.karaoke_management.service.AccountService;
 
 @Service
-public class AccountServiceImpl extends BaseServiceImpl<Account, AccountDTO, AccountRepository> implements AccountService {
+public class AccountServiceImpl extends BaseServiceImpl<Account, AccountRepository> implements AccountService {
 
 	public AccountServiceImpl() {
 		

@@ -112,6 +112,13 @@ public class BillDetail extends BaseEntity {
 
 		this.detail_foods.add(detailFood);
 	}
+	
+	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 	@Override
 	public String toString() {
 		return "BillDetail [id=" + id + ", billId=" + bill.getId() + ", roomId=" + room.getId() + ", detail_foods=" + detail_foods

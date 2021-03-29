@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import info.kinhho.karaoke_management.dtos.BillDTO;
 import info.kinhho.karaoke_management.entities.Bill;
 import info.kinhho.karaoke_management.entities.BillDetail;
 import info.kinhho.karaoke_management.entities.Room;
@@ -14,7 +13,7 @@ import info.kinhho.karaoke_management.repository.BillRepository;
 import info.kinhho.karaoke_management.repository.RoomRepository;
 
 @Service
-public class BillServiceImpl extends BaseServiceImpl<Bill, BillDTO, BillRepository> {
+public class BillServiceImpl extends BaseServiceImpl<Bill, BillRepository> {
 	
 	private BillDetailRepository billDetailRepository;
 	private RoomRepository roomRepository;

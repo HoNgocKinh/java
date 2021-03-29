@@ -73,6 +73,12 @@ public class Bill extends BaseEntity {
 		billDetails.add(billDetail);
 		return billDetail;
 	}
+	
+	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
 
 	@Override
 	public String toString() {

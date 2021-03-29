@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import org.springframework.stereotype.Service;
 
 import info.kinhho.karaoke_management.assistants.DateType;
-import info.kinhho.karaoke_management.dtos.RoomDTO;
 import info.kinhho.karaoke_management.entities.BillDetail;
 import info.kinhho.karaoke_management.entities.Room;
 import info.kinhho.karaoke_management.entities.RoomPrice;
@@ -16,7 +15,7 @@ import info.kinhho.karaoke_management.repository.RoomRepository;
 import info.kinhho.karaoke_management.service.RoomService;
 
 @Service
-public class RoomServiceImpl extends BaseServiceImpl<Room, RoomDTO, RoomRepository> implements RoomService {
+public class RoomServiceImpl extends BaseServiceImpl<Room, RoomRepository> implements RoomService {
 
 	private RoomPriceRepository roomPriceRepository;
 

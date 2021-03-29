@@ -61,4 +61,11 @@ public class Supplier extends BaseEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public String getJsonObject() {
+
+		return String.format("{\"id\": %d, \"name\": \"%s\", \"phone\": \"%s\", \"address\": \"%s\"}",
+				id, name, phone, address);
+	}
 }

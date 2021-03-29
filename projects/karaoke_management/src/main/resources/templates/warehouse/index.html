@@ -9,95 +9,135 @@
 	<br />
 	<div class="container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item"><a class="nav-link active" id="home-tab"
-				data-toggle="tab" href="#supplier" role="tab" aria-controls="home"
-				aria-selected="true">Stock</a></li>
-			<li class="nav-item"><a class="nav-link" id="profile-tab"
-				data-toggle="tab" href="#stockIn" role="tab" aria-controls="profile"
-				aria-selected="false">Product</a></li>
+			<li class="nav-item"><a class="nav-link active" id="stock-tab"
+				data-toggle="tab" href="#stockTab" role="tab"
+				aria-controls="stockTab" aria-selected="true">Stock</a></li>
+			<li class="nav-item"><a class="nav-link" id="product-tab"
+				data-toggle="tab" href="#productTab" role="tab"
+				aria-controls="productTab" aria-selected="false">Product</a></li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="supplier" role="tabpanel"
-				aria-labelledby="supplier-tab">
-				<div class="container">
-					<p></p>
-					<div class="row">
-						<div class="col">
-							<h3>Stock Information: </h3>
-						</div>
-						<div class="col-1">
-							<button 
-								onclick="openModal('stock', undefined, 'Create')"
-								class="btn btn-success float-right" data-toggle="tooltip"
-								title="Add">
-								<i class="fa fa-plus"></i>
-							</button>
-						</div>
-
+			<div class="tab-pane fade show active" id="stockTab" role="tabpanel"
+				aria-labelledby="stock-tab">
+				<p></p>
+				<div class="row">
+					<div class="col">
+						<h3>
+							Stock Information <span class="badge badge-secondary"
+								th:utext="${warehouse.packages.size()}"></span>
+						</h3>
 					</div>
-					<div class="row">
-						<div class="col">
-							<div class="table-reponsive h-100" style="overflow: auto;">
-								<table class="table table-hover table-stripped" id="stock-tb">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Package Code</th>
-											<th>Product Name</th>
-											<th>Supplier Name</th>
-											<th>Entry Date</th>
-											<th>Expire At</th>
-											<th>Status</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-	
-									</tbody>
-								</table>
-							</div>
+					<div class="col-1">
+						<button onclick="openModal('stock', undefined, 'Create', true)"
+							class="btn btn-success float-right" data-toggle="tooltip"
+							title="Add">
+							<i class="fa fa-plus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="table-reponsive h-100">
+							<table class="table table-hover table-stripped" id="stock-tb">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Package Code</th>
+										<th>Products</th>
+										<th>Supplier Name</th>
+										<th>Entry Date</th>
+										<th>Status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="package, state : ${warehouse.packages}">
+										<td th:utext="${state.count}"></td>
+										<td th:utext="${package.code}"></td>
+										<td><th:block th:each="product : ${package.products}">
+												<button th:inline="text" class="btn btn-primary btn-sm">
+													[[${product.name}]] <span class="badge badge-light"
+														th:utext="${product.quantity}"></span>
+												</button>
+											</th:block></td>
+										<td th:utext="${package.supplier.name}"></td>
+										<td th:utext="${package.createdAt}"></td>
+										<td>
+											<!-- PAID = SUCCESS | DEPT = DANGER --> <span
+											class="badge badge-primary" th:utext="${package.status}"></span>
+										</td>
+										<td>
+											<button class="btn btn-sm btn-secondary"
+												th:attr="onclick='openEditableModal(\'' + ${package.getJsonObject()} + '\');'"
+												data-toggle="tooltip" title="Edit">
+												<i class="fa fa-edit"></i>
+											</button>
+											<button
+												th:attr="onclick='confirmModal(`Do you sure to delete ' + ${package.code} + '`, \'' + ${package.id} + '\', `delete`);'"
+												class="btn btn-sm btn-danger" data-toggle="tooltip"
+												title="Delete">
+												<i class="fa fa-trash"></i>
+											</button>
+											<button
+												th:attr="onclick='confirmModal(`Do you sure to unactive ' + ${package.code} + '`, \'' + ${package.id} + '\', `unactive`);'"
+												class="btn btn-sm btn-warning" data-toggle="tooltip"
+												title="Unactive">
+												<i class="fa fa-lock"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane fade" id="stockIn" role="tabpanel"
-				aria-labelledby="stockin-tab">
-				<div class="container">
-					<p></p>
-					<div class="row">
-						<div class="col">Total: 500 records</div>
-						<div class="col-3">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control form-control-sm"
-									placeholder="Searching...">
-								<div class="input-group-append">
-									<button class="btn btn-outline-secondary btn-sm" type="button">
-										<i class="fas fa-search"></i>
-									</button>
-								</div>
-							</div>
-						</div>
+			<div class="tab-pane fade" id="productTab" role="tabpanel"
+				aria-labelledby="product-tab">
+				<p></p>
+				<div class="row">
+					<div class="col">
+						<h3>
+							Product Information <span class="badge badge-secondary"
+								th:utext="${warehouse.products.size()}"></span>
+						</h3>
 					</div>
-					<div class="row">
-						<div class="col">
-							<div class="table-reponsive">
-								<table class="table table-hover" id="product-tb">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Name</th>
-											<th>Quantity</th>
-											<th>Unit</th>
-											<th>Price</th>
-											<th>Type</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-	
-									</tbody>
-								</table>
-							</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="table-reponsive">
+							<table class="table table-hover" id="product-tb">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th>Image</th>
+										<th>Quantity</th>
+										<th>Unit</th>
+										<th>Bought Price</th>
+										<th>Sell Price</th>
+										<th>Type</th>
+										<th>Expired At</th>
+										<th>Package Code</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="product, state : ${warehouse.products}">
+										<td th:utext="${state.count}" class="align-middle"></td>
+										<td th:utext="${product.name}" class="align-middle"></td>
+										<td><img th:src="${product.image}" width="60" /></td>
+										<td th:utext="${product.quantity}" class="align-middle"></td>
+										<td th:utext="${product.unit}" class="align-middle"></td>
+										<td th:utext="${product.boughtPrice}" class="align-middle"></td>
+										<td th:utext="${product.sellPrice}" class="align-middle"></td>
+										<td class="align-middle"><span
+											class="badge badge-primary" th:utext="${product.type}"></span></td>
+
+										<td th:utext="${product.expiredAt}" class="align-middle"></td>
+										<td th:utext="${product.packagez.code}" class="align-middle"></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -106,6 +146,8 @@
 	</div>
 	<div th:replace="layouts/layout.html::stock"></div>
 	<script>
+		
+		var defaultModalAddContent = undefined;
 		
 		$(document).ready(function() {
 
@@ -117,6 +159,8 @@
 				"pageLength" : 6
 			});
 			
+			// storage default content Modal add
+			defaultModalAddContent = $(".modal-body .container").html();
 			
 			// config tooltip
 			$('[data-toggle="tooltip"]').tooltip();
@@ -143,15 +187,20 @@
 		                                <input type="text" class="form-control product" />
 		                            </div>
 		                            <div class="col pr-0">
-		                                <input type="text" class="form-control product boughtPrice" />
+		                                <input type="text" class="form-control product boughtPrice" onchange="addPrice('boughtPrice')"/>
 		                            </div>
 		                            <div class="col pr-0">
-		                                <input type="text" class="form-control product sellPrice" />
+		                                <input type="text" class="form-control product sellPrice" onchange="addPrice('sellPrice')"/>
 		                            </div>
-		                            <div class="col p-0 d-flex justify-content-center pt-1">
+		                            <div class="col p-0 d-flex justify-content-around pt-1">
+		                            	<button class="btn btn-primary btn-sm text-light"
+		                            		onclick="uploadProductImage(this)">
+		                            		<i class="fas fa-images"></i>
+		                            	</button>
+		                            	<input type="file" class="d-none p-file" />
 			                            <button type="button" class="btn btn-danger btn-sm"
 											onclick="removeDupplicateInputs(this)">
-											<i class="fa fa-minus"></i>
+											<i class="fa fa-trash"></i>
 										</button>
 		                            </div>
 		                        </div>`; 
@@ -159,6 +208,8 @@
 		}
 		function removeDupplicateInputs(ele) {
 			ele.parentNode.parentNode.remove();
+			addPrice('sellPrice');
+			addPrice('boughtPrice');
 		}
 		
 		function getLastExpiredDate() {
@@ -167,12 +218,13 @@
 			productsExp = productsExp.sort((a, b) => new Date(a) - new Date(b)); // sort asc
 			$("#m_expAt").val(productsExp.slice(-1).toString());
 		}
-		function addPrice(id, value) {
+		function addPrice(id) {
 			
 			let price = $(`.${id}`).toArray().reduce((total, ele) => total + parseFloat(ele.value), 0);
 			$(`#m_${id}`).val(price);
 		}
 		function addPackage(e) {
+			
 			let products = $(".product");
 			var productsForm = [];
 			// check empty field in products
@@ -186,8 +238,8 @@
 				let unit = products[i+4].value;
 				let boughtPrice = products[i+5].value;
 				let sellPrice = products[i+6].value;
-				
-				productsForm.push({productName, quantity, expiredAt, type, unit, boughtPrice, sellPrice});
+				let image = "";
+				productsForm.push({productName, quantity, expiredAt, type, unit, boughtPrice, sellPrice, image});
 			}
 			let packageCode = $("#m_packageCode").val();
 			let supplierId = $("#m_supplier").val();
@@ -204,20 +256,42 @@
 			
 			let bodyData = {
 					"package": packagez,
-					"packageProducts": productsForm
+					"products": productsForm
 			};
 			
 			fetch(`${window.location.origin}/warehouse/add`, {
 				method: "POST",
 				body: JSON.stringify(bodyData)
 			})
-			.then(res => res.json())
+			.then(res => res.text())
 			.then(res => {
-				console.log(res);
+				window.location.reload();
 			});
 		}
+		
+		
+		function uploadProductImage(btnClicked) {
+			btnClicked.nextElementSibling.click();
+		}
+		
+		function setUpDefaultModal() {
+			$(".modal-body .container").html(defaultModalAddContent);
+		}
+		
+		function openEditableModal(jsonObjectStr) {
+			
+			let packagez = JSON.parse(jsonObjectStr);
+			$("#m_packageCode").val(packagez.code);
+			$("#m_supplier").val(packagez.supplier.id);
+			$("#m_status").val(packagez.status);
+			$("#m_boughtPrice").val(packagez.boughtPrice);
+			$("#m_sellPrice").val(packagez.sellPrice);
+			
+			$("#m_submit").val("Update");
+			$("#stock").modal({show: true});
+		}
+		
 	</script>
-
 <body th:insert="layouts/layout.html::footer"></body>
 </body>
 

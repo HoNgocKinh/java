@@ -2,6 +2,7 @@ package info.kinhho.karaoke_management.entities;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import javax.persistence.MappedSuperclass;
 
 @Inheritance
 @MappedSuperclass
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -30,6 +31,11 @@ public class BaseEntity implements Serializable {
 	@Column(name = "active")
 	protected boolean active = true;
 	
+	@Column(name = "json_string")
+	protected String jsonObject;
+	
+	protected transient DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm O");
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,16 +44,16 @@ public class BaseEntity implements Serializable {
 		this.id = id;
 	}
 
-	public ZonedDateTime getCreatedAt() {
-		return createdAt;
+	public String getCreatedAt() {
+		return createdAt.format(formatter);
 	}
 
 	public void setCreatedAt(ZonedDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public ZonedDateTime getUpdatedAt() {
-		return updatedAt;
+	public String getUpdatedAt() {
+		return updatedAt.format(formatter);
 	}
 
 	public void setUpdatedAt(ZonedDateTime updatedAt) {
@@ -61,4 +67,10 @@ public class BaseEntity implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	public void setJsonObject(String jsonObject) {
+		this.jsonObject = jsonObject;
+	}
+	
+	public abstract String getJsonObject();
 }

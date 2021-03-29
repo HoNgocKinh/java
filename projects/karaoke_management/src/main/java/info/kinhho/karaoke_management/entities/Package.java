@@ -19,8 +19,8 @@ public class Package extends BaseEntity {
 	@Column(name = "status")
 	private String status;
 
-	@Column(name = "package_code")
-	private String packageCode;
+	@Column(name = "code")
+	private String code;
 	
 	@Column(name = "bought_price")
 	private double boughtPrice;
@@ -29,7 +29,7 @@ public class Package extends BaseEntity {
 	private double sellPrice;
 	
 	@OneToMany(mappedBy = "packagez", fetch = FetchType.LAZY)
-	private List<PackageProduct> packageProducts = new ArrayList<PackageProduct>();
+	private List<Product> products = new ArrayList<Product>();
 	
 	@ManyToOne
 	private Supplier supplier;
@@ -42,12 +42,12 @@ public class Package extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getPackageCode() {
-		return packageCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setPackageCode(String packageCode) {
-		this.packageCode = packageCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public double getBoughtPrice() {
@@ -72,5 +72,27 @@ public class Package extends BaseEntity {
 
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	@Override
+	public String getJsonObject() {
+
+		StringBuilder productsJsonStr = new StringBuilder("[");
+		products.forEach(product -> {
+			productsJsonStr.append(product.getJsonObject()).append(",");
+		});
+		productsJsonStr.deleteCharAt(productsJsonStr.length() - 1);
+		productsJsonStr.append("]");
+		
+		return String.format("{\"id\": %d, \"code\": \"%s\", \"status\": \"%s\", \"boughtPrice\": %f, \"sellPrice\": %f, \"products\": %s, \"supplier\": %s}", 
+				id, code, status, boughtPrice, sellPrice, productsJsonStr.toString(), supplier.getJsonObject());
 	}
 }

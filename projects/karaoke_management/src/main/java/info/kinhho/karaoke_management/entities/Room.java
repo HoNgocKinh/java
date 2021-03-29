@@ -182,5 +182,10 @@ public class Room extends BaseEntity {
 		}
 		return "Đang sử dụng";
 	}
-		
+
+	@Override
+	public String getJsonObject() {
+		// TODO Auto-generated method stub
+		return "";
+	}
 }
