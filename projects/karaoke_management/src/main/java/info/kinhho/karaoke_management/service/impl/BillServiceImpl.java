@@ -113,4 +113,11 @@ public class BillServiceImpl extends BaseServiceImpl<Bill, BillRepository> {
 	public void createSeedData() {
 		
 	}
+
+
+	@Override
+	public void unactive(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

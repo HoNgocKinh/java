@@ -15,4 +15,11 @@ public class BillDetailServiceImpl extends BaseServiceImpl<BillDetail, BillDetai
 	public void createSeedData() {
 		
 	}
+
+	@Override
+	public void unactive(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

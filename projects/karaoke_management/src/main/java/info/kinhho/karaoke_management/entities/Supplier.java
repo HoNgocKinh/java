@@ -62,6 +62,18 @@ public class Supplier extends BaseEntity {
 		this.address = address;
 	}
 
+	public List<Package> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
+	}
+	
+	public int getNoActivePackages() {
+		
+		return (int)packages.stream().parallel().filter(packagez -> packagez.isActive()).count();
+	}
 	@Override
 	public String getJsonObject() {
 

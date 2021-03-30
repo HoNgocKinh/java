@@ -1,35 +1,21 @@
 package info.kinhho.karaoke.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "room_price")
-public class RoomPrice extends BaseEntity {
+public class RoomPrice {
 	
-	private static final long serialVersionUID = 1l;
-	
-	@Column(name = "typeRoom")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String typeRoom;
-	
-	@Column(name = "price")
 	private float price;
-	
-	@Column(name = "check_in")
 	private int checkIn; // hour check-in
-	
-	@Column(name = "check_out")
 	private int checkOut; //hour check-out
-	
-	@Column(name = "type_day")
 	private String typeDay;
-	
-	@OneToOne
-	@JoinColumn(name = "room_id", referencedColumnName = "id")
-	private Room room;
 	
 	public RoomPrice() {
 				
@@ -44,6 +30,12 @@ public class RoomPrice extends BaseEntity {
 		this.typeDay = typeDay;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getTypeRoom() {
 		return typeRoom;
 	}
@@ -56,23 +48,18 @@ public class RoomPrice extends BaseEntity {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	
 	public int getCheckIn() {
 		return checkIn;
 	}
-
 	public void setCheckIn(int checkIn) {
 		this.checkIn = checkIn;
 	}
-
 	public int getCheckOut() {
 		return checkOut;
 	}
-
 	public void setCheckOut(int checkOut) {
 		this.checkOut = checkOut;
 	}
-
 	public String getTypeDay() {
 		return typeDay;
 	}
@@ -97,14 +84,6 @@ public class RoomPrice extends BaseEntity {
 		return "Ngày lễ";
 	}
 	
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
 	@Override
 	public String toString() {
 		return "Room_Price [id=" + id + ", typeRoom=" + typeRoom + ", price=" + price + ", checkIn=" + checkIn

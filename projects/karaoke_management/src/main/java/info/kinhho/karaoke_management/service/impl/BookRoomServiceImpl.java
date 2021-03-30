@@ -15,4 +15,10 @@ public class BookRoomServiceImpl extends BaseServiceImpl<BookRoom, BookRoomRepos
 	public void createSeedData() {
 		
 	}
+
+	@Override
+	public void unactive(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

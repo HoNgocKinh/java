@@ -26,4 +26,11 @@ public class RoomPriceServiceImpl
 	}
 
 	public void createSeedData() { }
+
+	@Override
+	public void unactive(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

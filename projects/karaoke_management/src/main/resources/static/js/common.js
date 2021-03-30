@@ -22,7 +22,7 @@ function confirmModal(message, key, methodURL) {
 	
 	let isConfirmDelete = confirm(message);
 	if (isConfirmDelete) {
-		fetch(window.location.href + `/${methodURL}/${key}`, {
+		fetch(window.location.origin + `/${methodURL}/${key}`, {
 			method: "POST",
 		})
 		.then(res => res.text())

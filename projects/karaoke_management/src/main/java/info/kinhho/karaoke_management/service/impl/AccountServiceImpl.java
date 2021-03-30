@@ -27,4 +27,9 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, AccountReposito
 		repository.save(account2);
 		repository.save(account3);
 	}
+
+	@Override
+	public void unactive(Long id) {
+		
+	}
 }

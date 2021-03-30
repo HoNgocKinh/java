@@ -46,29 +46,5 @@ public abstract class BaseServiceImpl <E extends BaseEntity, R extends BaseRepos
 	}
 	public void delete(Long id) {
 		repository.deleteById(id);
-	}
-	
-	public void deleteAll() {
-		repository.deleteAll(); 
-	}
-	
-	public void unactive(Long id) {
-		E entity = repository.findById(id).get();
-		entity.setActive(false);
-		update(entity);
-	}
-	
-	public void unactiveAll() {
-		
-		List<E> entities = repository.findAll();
-		entities.stream().parallel().forEach(e -> {
-			e.setActive(false);
-			update(e);
-		});
-	}
-	
-//	private List<D> convertListDto(List<E> entities) {
-//		if (Objects.isNull(entities)) return null;
-//		return entities.stream().parallel().map(this::toDto).collect(Collectors.toList());
-//	}
+	}	
 }

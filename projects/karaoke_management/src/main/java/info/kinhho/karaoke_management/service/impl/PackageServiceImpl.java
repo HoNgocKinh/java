@@ -16,4 +16,15 @@ public class PackageServiceImpl
 	}
 
 	public void createSeedData() { }
+
+	@Override
+	public void unactive(Long id) {
+		
+		Package packagez = repository.findById(id).get();
+		packagez.getProducts().forEach(product -> {
+			product.setActive(false);
+		});
+		packagez.setActive(false);
+		repository.save(packagez);
+	}
 }

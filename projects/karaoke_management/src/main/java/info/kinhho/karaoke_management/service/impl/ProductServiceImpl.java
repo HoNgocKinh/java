@@ -19,4 +19,11 @@ public class ProductServiceImpl
 	}
 
 	public void createSeedData() { }
+
+	@Override
+	public void unactive(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -66,6 +66,10 @@ public class WarehouseCentral {
 		// packageProducts at 1
 		Package packagez = new Package();
 		LinkedTreeMap<String, String> packageForm = (LinkedTreeMap<String, String>) obj.get("package");
+		if (!packageForm.get("packageId").isEmpty()) {
+			packagez.setId(Long.parseLong(packageForm.get("packageId")));
+		}
+		
 		packagez.setCode(packageForm.get("packageCode"));
 		packagez.setStatus(packageForm.get("status"));
 		packagez.setBoughtPrice(Double.parseDouble(packageForm.get("boughtPrice")));
@@ -79,6 +83,9 @@ public class WarehouseCentral {
 		productsForm.forEach(productForm -> {
 			
 			Product product = new Product();
+			if (!productForm.get("productId").isEmpty()) {
+				product.setId(Long.parseLong(productForm.get("productId")));
+			}
 			product.setName(productForm.get("productName"));
 			product.setUnit(productForm.get("unit"));
 			product.setBoughtPrice(Double.parseDouble(productForm.get("boughtPrice")));
@@ -95,6 +102,14 @@ public class WarehouseCentral {
 			productService.save(product);
 		});
 		return "Save!";
+	}
+	
+	public void delete(Long id) {
+		packageService.delete(id);
+	}
+	
+	public void unactive(Long id) {
+		packageService.unactive(id);
 	}
 	
 	/** ------------- Getter/Setter ------------------**/

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class WarehouseController {
 		WarehouseDTO warehouse = warehouseCentral.getDTORendering();
 				
 		model.addAttribute("warehouse", warehouse);
+		model.addAttribute("active", "warehouse");
 		return "warehouse/index";
 	}
 	
@@ -41,5 +43,20 @@ public class WarehouseController {
 		LOGGER.info("Inventory Add method - path: /warehouse/add");
 				
 		return ResponseEntity.ok(warehouseCentral.save(requestBody));
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+		
+		LOGGER.info("Inventory Delete method - path: /warehouse/delete");
+		warehouseCentral.delete(id);
+		return ResponseEntity.ok(true);
+	}
+	
+	@RequestMapping(value = "/unactive/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> unactive(@PathVariable("id") Long id) {
+		
+		warehouseCentral.unactive(id);
+		return ResponseEntity.ok(true);
 	}
 }

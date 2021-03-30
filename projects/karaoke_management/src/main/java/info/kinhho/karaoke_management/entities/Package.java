@@ -3,6 +3,7 @@ package info.kinhho.karaoke_management.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,10 +29,10 @@ public class Package extends BaseEntity {
 	@Column(name = "sell_price")
 	private double sellPrice;
 	
-	@OneToMany(mappedBy = "packagez", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "packagez", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Product> products = new ArrayList<Product>();
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Supplier supplier;
 	
 	public String getStatus() {

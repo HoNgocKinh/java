@@ -1,6 +1,5 @@
 package info.kinhho.karaoke.services;
 
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -17,23 +16,23 @@ import info.kinhho.karaoke.repository.RoomRepository;
 @Service
 public class BillService {
 	
-	private BillRepository repository;
+	private BillRepository billRepository;
 	private BillDetailRepository billDetailRepository;
 	private RoomRepository roomRepository;
 	
 	public BillService(
-			BillRepository repository,
+			BillRepository billRepository,
 			RoomRepository roomRepository, 
 			BillDetailRepository billDetailRepository,
 			RoomPriceRepository roomPriceRepository
 	) {
-		this.repository = repository;
+		this.billRepository = billRepository;
 		this.roomRepository = roomRepository;
 		this.billDetailRepository = billDetailRepository;
 	}
 	
 	public void save(Bill bill) {
-		this.repository.save(bill);
+		this.billRepository.save(bill);
 	}
 	
 	public void save(BillDetail billDetail) {
@@ -47,29 +46,29 @@ public class BillService {
 		BillDetail billDetail = bill.getBillDetails().get(size - 1);
 		
 		Room room = billDetail.getRoom();
-		room.setCustomerPhone(bill.getCustomerPhone());
-		room.setStatus("ORDERED");
+		room.setCustomPhone(bill.getCustomerPhone());
+		room.setState("ORDERED");
 		
 		this.roomRepository.save(room);
 	}
 	 
-	public void setUseRoom(Long id) {
+	public void setUseRoom(Integer id) {
 			
 		BillDetail billDetail = this.billDetailRepository.getByRoomId(id, "NOT");
 		Bill bill = billDetail.getBill();
 		
 		Room room = billDetail.getRoom(); 
 		
-		room.setCheckIn(ZonedDateTime.now());
+		room.setTimeStart(new Date());
 		billDetail.setCheckIn(new Date());
-		room.setStatus("USED");
+		room.setState("USED");
 		
-		this.repository.save(bill);
+		this.billRepository.save(bill);
 		this.roomRepository.save(room);
 			
 	}
 	
-	public Bill getBillFromRoomId(Long id) {
+	public Bill getBillFromRoomId(Integer id) {
 		
 		BillDetail detail = this.billDetailRepository.getByRoomId(id, "NOT");
 		return detail.getBill();		
@@ -77,19 +76,19 @@ public class BillService {
 	
 	public void swapRoom(Room from, Room to) {
 		
-//		BillDetail detailFrom = this.billDetailRepository.getByRoomId(from.getId(), "NOT");
-//		detailFrom.setCheckOut(new Date());
-//		detailFrom.set("PAID");
-//				
-//		Bill bill = detailFrom.getBill();
-//		
-//		to.setCustomPhone(from.getCustomPhone());
-//		to.setState( from.getState() );
-//		to.setTimeStart( new Date());
-//		
-//		
-//		
-//		bill.createBillDetail(to);
+		BillDetail detailFrom = this.billDetailRepository.getByRoomId(from.getId(), "NOT");
+		detailFrom.setCheckOut(new Date());
+		detailFrom.setState("PAID");
+				
+		Bill bill = detailFrom.getBill();
+		
+		to.setCustomPhone(from.getCustomPhone());
+		to.setState( from.getState() );
+		to.setTimeStart( new Date());
+		
+		
+		
+		bill.createBillDetail(to);
 	}
 	
 	public BillDetail getBillDetailFromRoomId(Room room) {
@@ -106,12 +105,12 @@ public class BillService {
 		
 		Bill bill = detail.getBill();
 		
-		room.setStatus("USED");
-		room.setCheckIn(ZonedDateTime.now());
+		room.setState("USED");
+		room.setTimeStart(new Date());
 		BillDetail detailNew = bill.createBillDetail(room);
 		detailNew.setCheckIn(new Date());
 		
-		this.repository.save(bill);
+		this.billRepository.save(bill);
 	}
 	
 }

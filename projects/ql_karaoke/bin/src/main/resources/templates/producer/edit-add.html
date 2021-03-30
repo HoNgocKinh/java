@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="layouts/layout.html :: header"></head>
+
+<title>Đối tác</title>
+</head>
+<body>
+	<div th:replace="layouts/layout.html :: nav"></div>
+	<div class="container">
+		<div class="col-5 offset-3 mt-5">
+			<h2>Thêm nhà cung cấp: </h2>
+			 <form th:action="@{/} + ${actionLink}" method="POST" th:object="${producer}" class="form-signin">
+				<input type="hidden" th:field="*{id}" th:value="${producer.getId()}" />
+				
+				<div class="form-group">
+					<label>Tên nhà cung cấp</label><br/>
+					<input type="text" class="form-control" th:field="*{name}" th:value="${producer.getName()}"/>
+				</div>
+				
+				<div class="form-group">
+					<label>Số điện thoại</label>
+					<input type="text" class="form-control" th:field="*{phone}" th:value="${producer.getPhone()}"/>
+				</div>
+				
+				<div class="form-group">
+					<label>Địa chỉ</label>
+					<input type="text" class="form-control" th:field="*{address}" th:value="${producer.getAddress()}"/>
+				</div>
+				
+				<a href="/producer/" class="btn btn-warning float-right mt-3 ml-3">Cancel</a>
+				<input type="submit" class="btn btn-success float-right mt-3" th:value="${actionName}"/>				
+			</form> 
+		</div>
+	</div>
+</body>
+</html>

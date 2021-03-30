@@ -32,4 +32,15 @@ public class SupplierServiceImpl
 		repository.save(supplier5);
 		repository.save(supplier6);
 	}
+
+	@Override
+	public void unactive(Long id) {
+		
+		Supplier supplier = repository.findById(id).get();
+		supplier.getPackages().forEach(packagez -> {
+			packagez.setActive(false);
+		});
+		supplier.setActive(false);
+		repository.save(supplier);
+	}
 }

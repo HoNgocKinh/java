@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import info.kinhho.karaoke_management.dtos.RoomDTO;
+import info.kinhho.karaoke_management.lightweight.RoomCentral;
 import info.kinhho.karaoke_management.service.RoomPriceService;
 import info.kinhho.karaoke_management.service.RoomService;
 
@@ -12,23 +14,21 @@ import info.kinhho.karaoke_management.service.RoomService;
 @RequestMapping(value = {"/rooms"})
 public class RoomController {
 	
-	private RoomService roomService;
-	private RoomPriceService roomPriceService;
+	private RoomCentral roomCentral;
 	
-	public RoomController(RoomService roomService, RoomPriceService roomPriceService) {
-		this.roomPriceService = roomPriceService;
-		this.roomService = roomService;
+	public RoomController(RoomCentral roomCentral) {
+		this.roomCentral = roomCentral;
 	}
 	
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String index(Model model) {
 		
-//		List<RoomDTO> rooms = roomService.findAll();
-//		List<RoomPriceDTO> roomPrices = roomPriceService.findAll();
-//		
-//		model.addAttribute("rooms", rooms);
-//		model.addAttribute("roomPrices", roomPrices);
-//		model.addAttribute("active", "rooms");
+		RoomDTO room = roomCentral.getDTORendering();
+		
+		model.addAttribute("roomDTO", room);
+		model.addAttribute("active", "rooms");
+		
+		
 		return "room/index";
 	}
 }

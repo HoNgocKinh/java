@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,10 +42,10 @@ public class Product extends BaseEntity {
 	@Column(name = "image")
 	private String image;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Package packagez;
 	
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<DetailProduct> detail_products = new ArrayList<DetailProduct>();
 	
 	public Product() { }
@@ -163,6 +164,6 @@ public class Product extends BaseEntity {
 	public String getJsonObject() {
 
 		return String.format("{\"id\": %d, \"name\": \"%s\", \"unit\": \"%s\", \"boughtPrice\": %f, \"sellPrice\": %f, \"type\": \"%s\", \"expiredAt\": \"%s\", \"quantity\": %d, \"image\": \"%s\"}",
-				id, name, unit, boughtPrice, sellPrice, type, expiredAt, quantity, image);
+				id, name, unit, boughtPrice, sellPrice, type, getExpiredAt(), quantity, image);
 	}
 }

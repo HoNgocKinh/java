@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layouts/layout.html::header"></head>
+	<title>Hàng hóa</title>
+</head>
+<body>
+	<div th:insert="layouts/layout.html::nav"></div>
+	
+	<div class="container mt-3">
+		<div class="row">
+			<h2 class="col-lg-10">Thông tin của tất cả giá phòng: </h2>	
+			<a th:href="@{/food/add}" class="btn btn-success ml-auto mb-3 mr-3">Thêm</a>
+		</div>	
+		<table class="table table-striped" id="table">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Tên hàng hóa</th>
+					<th>Loại</th>
+					<th>Đơn vị tính</th>
+					<th>Tên nhà cung cấp</th>
+					<th>Số lượng</th>
+					<th>Giá tiền</th>
+					<th>Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>														
+				<tr th:each="food, ite : ${foods}">
+					<td th:utext="${ite.count}"></td>
+					<td th:utext="${food.name}"></td>
+					<td th:utext="${food.displayTypeFood()}"></td>
+					<td th:utext="${food.unit}"></td>
+					<td th:utext="${food.producer.name}"></td>
+					<td th:utext="${food.quanlity}"></td>
+					<td th:utext="${food.price}"></td>
+					<td>							
+						<a th:href="@{/food/edit/} + ${food.getId()}" class="btn btn-warning">Sửa</a>
+						 | 
+						 <a th:href="@{/food/delete/} + ${food.getId()}" class="btn btn-danger">Xóa</a>
+					</td>
+				</tr>					
+			</tbody>
+		</table>	
+	</div>	
+	
+	<body th:insert="layouts/layout.html::footer"></body>
+</body>
+</html>

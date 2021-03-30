@@ -5,20 +5,21 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 
 @Entity
-@Table(name = "bill_detail")
-public class BillDetail extends BaseEntity {	
+public class BillDetail {	
 	
-	private static final long serialVersionUID = 1l;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
 	@ManyToOne
 	private Bill bill;
@@ -28,20 +29,21 @@ public class BillDetail extends BaseEntity {
 	private Room room;
 	
 	@OneToMany(mappedBy = "billDetail", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<DetailProduct> detail_foods = new ArrayList<DetailProduct>();
+	private List<DetailFood> detail_foods;
+		
+	private String state;
 	
-	@Column(name = "status")
-	private String status;
-	
-	@Column(name = "check_in")
 	private Date checkIn;
-	
-	@Column(name = "check_out")
 	private Date checkOut;
-	
-	@Column(name = "price")
 	private double price;
 	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 
 	public double getPrice() {
 		return price;
@@ -51,21 +53,35 @@ public class BillDetail extends BaseEntity {
 		this.price = price;
 	}
 
-	public BillDetail() { }
+	public BillDetail() {
+		super();
+	}
 	
 	public BillDetail(Room room, Bill bill) {
+		super();
 		this.room = room;
 		this.bill = bill;
-		this.status = "NOT";
+		this.state = "NOT";
+		this.detail_foods = new ArrayList<>();
 	}
 	
 	public BillDetail(Room room) {
+		super();
 		this.room = room;
 	}
-	public BillDetail(Long id, Bill bill, Room room) {
+	public BillDetail(Integer id, Bill bill, Room room) {
+		super();
 		this.id = id;
 		this.bill = bill;
 		this.room = room;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Bill getBill() {
@@ -100,21 +116,21 @@ public class BillDetail extends BaseEntity {
 		this.checkOut = checkOut;
 	}
 
-	public List<DetailProduct> getDetail_foods() {
+	public List<DetailFood> getDetail_foods() {
 		return detail_foods;
 	}
 
-	public void setDetail_foods(List<DetailProduct> detail_foods) {
+	public void setDetail_foods(List<DetailFood> detail_foods) {
 		this.detail_foods = detail_foods;
 	}
 	
-	public void add(DetailProduct detailFood) {
+	public void add(DetailFood detailFood) {
 
 		this.detail_foods.add(detailFood);
 	}
 	@Override
 	public String toString() {
 		return "BillDetail [id=" + id + ", billId=" + bill.getId() + ", roomId=" + room.getId() + ", detail_foods=" + detail_foods
-				+ ", status=" + status + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", price=" + price + "]";
+				+ ", state=" + state + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", price=" + price + "]";
 	}	
 }

@@ -8,7 +8,7 @@
 	<div th:replace="layouts/layout.html::nav"></div>
 	<div class="container mt-3">
 		<div class="row">
-			<h3 class="col-lg-10">Suppliers:</h3>
+			<h3 class="col-lg-10">Suppliers Information <span th:utext="${supplierDTO.suppliers.size()}" class="badge badge-secondary"></span></h3>
 			<button 
 				class="btn btn-success ml-auto mb-2 mr-3 text-light"
 				onclick="openModal('supplier', undefined, 'Create')">
@@ -22,30 +22,32 @@
 					<th>Name</th>
 					<th>Phone</th>
 					<th>Address</th>
+					<th>Total Packages Imported</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="supplier, state : ${suppliers}">
+				<tr th:each="supplier, state : ${supplierDTO.suppliers}">
 					<td th:utext="${state.count}"></td>
 					<td th:utext="${supplier.name}"></td>
 					<td th:utext="${supplier.phone}"></td>
-					<td th:utext="${supplier.address}"></td>
+					<td th:utext="${supplier.address}" class="text-truncate" style="max-width: 200px;"></td>
+					<td th:utext="${supplier.getNoActivePackages()}"></td>
 					<td>
 						<button class="btn btn-sm btn-secondary" 
-							th:attr="onclick='openModal(`supplier`, \'' + ${supplier.toString()} + '\', `Update`);'"
+							th:attr="onclick='openModal(`supplier`, \'' + ${supplier.getJsonObject()} + '\', `Update`);'"
 							data-toggle="tooltip"
 							title="Edit">
 							<i class="fa fa-edit"></i>
 						</button>
 						<button 
-						th:attr="onclick='confirmModal(`Do you sure to delete ' + ${supplier.name} + '`, \'' + ${supplier.id} + '\', `delete`);'"
+						th:attr="onclick='confirmModal(`Do you sure to delete ' + ${supplier.name} + '`, \'' + ${supplier.id} + '\', `suppliers/delete`);'"
 						class="btn btn-sm btn-danger" data-toggle="tooltip"
 							title="Delete">
 							<i class="fa fa-trash"></i>
 						</button>
 						<button 
-							th:attr="onclick='confirmModal(`Do you sure to unactive ' + ${supplier.name} + '`, \'' + ${supplier.id} + '\', `unactive`);'"
+							th:attr="onclick='confirmModal(`Do you sure to unactive ' + ${supplier.name} + '`, \'' + ${supplier.id} + '\', `suppliers/unactive`);'"
 							class="btn btn-sm btn-warning" data-toggle="tooltip"
 							title="Unactive">
 							<i class="fa fa-lock"></i>
@@ -56,22 +58,7 @@
 		</table>
 	</div>
 	<div th:replace="layouts/layout.html::supplier"></div>
-	<script>
-		$(document).ready(function() {
-			
-			// config DataTable
-			$("#table").DataTable({
-				"columnDefs": [
-			    	{ "width": "200px", "targets": 1 },
-			    	{ "width": "350px", "targets": 3 }
-			  	],
-				"pageLength" : 6
-			});
-			
-			// config tooltip
-			$('[data-toggle="tooltip"]').tooltip();
-		})
-	</script>
+	<script th:src="@{/js/supplier/index.js}"></script>
 <body th:insert="layouts/layout.html::footer"></body>
 </body>
 
