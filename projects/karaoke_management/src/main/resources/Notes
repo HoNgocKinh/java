@@ -9,5 +9,8 @@ Notes: Some missing function will do if has time
 		+ product - supplier
 		+ product - image
 	+ supplier
+	+ home
+		+ room -> get prices per hours
 		
+	
 		

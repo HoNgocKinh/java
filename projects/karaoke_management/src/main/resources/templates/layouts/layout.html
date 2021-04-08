@@ -106,8 +106,8 @@
 						<div class="row">
 							<div class="col">
 								<div class="form-group">
-									<label class="w-100">Price
-										<input type="text" class="form-control" name="price" id="m_price" readonly/>
+									<label class="w-100">Price <input type="text"
+										class="form-control" name="price" id="m_price" readonly />
 									</label>
 								</div>
 							</div>
@@ -316,6 +316,34 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Footer -->
+	<footer class="bg-dark text-center text-white w-100 position-absolute" th:fragment="footer-panel" style="bottom: 0;">
+		<!-- Grid container -->
+		<div class="container p-2">
+			<section>
+			© 2020 Copyright <span class="mr-5"></span>
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-facebook-f"></i></a>
+
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-twitter"></i></a>
+
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-google"></i></a>
+
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-instagram"></i></a>
+
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-linkedin-in"></i></a>
+
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-github"></i></a>
+			</section>
+		</div>
+		
+	</footer>
 <body th:fragment="footer">
 	<script th:src="@{/js/common.js}"></script>
 	<script th:src="@{/js/jquery.dataTables.min.js}"></script>

@@ -104,94 +104,94 @@ public class RoomServiceImpl extends BaseServiceImpl<Room, RoomRepository> imple
 		List<RoomPrice> roomPriceSuperVipHas15Capacity = Arrays.asList(roomPrice28, roomPrice29, roomPrice30, roomPrice34, roomPrice35, roomPrice36, roomPrice40, roomPrice41, roomPrice42);
 		List<RoomPrice> roomPriceSuperVipHas20Capacity = Arrays.asList(roomPrice31, roomPrice32, roomPrice33, roomPrice37, roomPrice38, roomPrice39, roomPrice43, roomPrice44, roomPrice45);
 		
-		Room roomf10 = new Room("F000", "VIP", "EMPTY", 1, 10);
+		Room roomf10 = new Room("F000", "VIP", "READY", 1, 10);
 		roomf10.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf11 = new Room("F001", "VIP", "EMPTY", 1, 10);
+		Room roomf11 = new Room("F001", "VIP", "READY", 1, 10);
 		roomf11.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf12 = new Room("F002", "VIP", "EMPTY", 1, 10);
+		Room roomf12 = new Room("F002", "VIP", "READY", 1, 10);
 		roomf12.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf13 = new Room("F003", "VIP", "EMPTY", 1, 10);
+		Room roomf13 = new Room("F003", "VIP", "READY", 1, 10);
 		roomf13.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf14 = new Room("F004", "VIP", "EMPTY", 1, 15);
+		Room roomf14 = new Room("F004", "VIP", "READY", 1, 15);
 		roomf14.setRoomPrices(roomPriceVipHas15Capacity);
 		
-		Room roomf15 = new Room("F005", "VIP", "EMPTY", 1, 20);
+		Room roomf15 = new Room("F005", "VIP", "READY", 1, 20);
 		roomf15.setRoomPrices(roomPriceVipHas20Capacity);
 		
-		Room roomf16 = new Room("F006", "SUPERVIP", "EMPTY", 1, 15);
+		Room roomf16 = new Room("F006", "SUPERVIP", "READY", 1, 15);
 		roomf16.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf17 = new Room("F007", "SUPERVIP", "EMPTY", 1, 15);
+		Room roomf17 = new Room("F007", "SUPERVIP", "READY", 1, 15);
 		roomf17.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf18 = new Room("F008", "SUPERVIP", "EMPTY", 1, 20);
+		Room roomf18 = new Room("F008", "SUPERVIP", "READY", 1, 20);
 		roomf18.setRoomPrices(roomPriceSuperVipHas20Capacity);
 		
-		Room roomf19 = new Room("F009", "SUPERVIP", "EMPTY", 1, 20);
+		Room roomf19 = new Room("F009", "SUPERVIP", "READY", 1, 20);
 		roomf19.setRoomPrices(roomPriceSuperVipHas20Capacity);
 		
-		Room roomf20 = new Room("F010", "VIP", "EMPTY", 2, 10);
+		Room roomf20 = new Room("F010", "VIP", "READY", 2, 10);
 		roomf20.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf21 = new Room("F011", "VIP", "EMPTY", 2, 10);
+		Room roomf21 = new Room("F011", "VIP", "READY", 2, 10);
 		roomf21.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf22 = new Room("F012", "VIP", "EMPTY", 2, 10);
+		Room roomf22 = new Room("F012", "VIP", "READY", 2, 10);
 		roomf22.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf23 = new Room("F013", "VIP", "EMPTY", 2, 10);
+		Room roomf23 = new Room("F013", "VIP", "READY", 2, 10);
 		roomf23.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf24 = new Room("F014", "VIP", "EMPTY", 2, 15);
+		Room roomf24 = new Room("F014", "VIP", "READY", 2, 15);
 		roomf24.setRoomPrices(roomPriceVipHas15Capacity);
 		
-		Room roomf25 = new Room("F015", "VIP", "EMPTY", 2, 20);
+		Room roomf25 = new Room("F015", "VIP", "READY", 2, 20);
 		roomf25.setRoomPrices(roomPriceVipHas20Capacity);
 		
-		Room roomf26 = new Room("F016", "SUPERVIP", "EMPTY", 2, 15);
+		Room roomf26 = new Room("F016", "SUPERVIP", "READY", 2, 15);
 		roomf26.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf27 = new Room("F017", "SUPERVIP", "EMPTY", 2, 15);
+		Room roomf27 = new Room("F017", "SUPERVIP", "READY", 2, 15);
 		roomf27.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf28 = new Room("F018", "SUPERVIP", "EMPTY", 2, 20);
+		Room roomf28 = new Room("F018", "SUPERVIP", "READY", 2, 20);
 		roomf28.setRoomPrices(roomPriceSuperVipHas20Capacity);
 		
-		Room roomf29 = new Room("F019", "SUPERVIP", "EMPTY", 2, 20);
+		Room roomf29 = new Room("F019", "SUPERVIP", "READY", 2, 20);
 		roomf29.setRoomPrices(roomPriceSuperVipHas20Capacity);
 
-		Room roomf30 = new Room("F020", "VIP", "EMPTY", 3, 10);
+		Room roomf30 = new Room("F020", "VIP", "READY", 3, 10);
 		roomf30.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf31 = new Room("F021", "VIP", "EMPTY", 3, 10);
+		Room roomf31 = new Room("F021", "VIP", "READY", 3, 10);
 		roomf31.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf32 = new Room("F022", "VIP", "EMPTY", 3, 10);
+		Room roomf32 = new Room("F022", "VIP", "READY", 3, 10);
 		roomf32.setRoomPrices(roomPriceVipHas10Capacity);
 		
-		Room roomf33 = new Room("F023", "VIP", "EMPTY", 3, 15);
+		Room roomf33 = new Room("F023", "VIP", "READY", 3, 15);
 		roomf33.setRoomPrices(roomPriceVipHas15Capacity);
 		
-		Room roomf34 = new Room("F024", "VIP", "EMPTY", 3, 20);
+		Room roomf34 = new Room("F024", "VIP", "READY", 3, 20);
 		roomf34.setRoomPrices(roomPriceVipHas20Capacity);
 		
-		Room roomf35 = new Room("F025", "VIP", "EMPTY", 3, 20);
+		Room roomf35 = new Room("F025", "VIP", "READY", 3, 20);
 		roomf35.setRoomPrices(roomPriceVipHas20Capacity);
 		
-		Room roomf36 = new Room("F026", "SUPERVIP", "EMPTY", 3, 15);
+		Room roomf36 = new Room("F026", "SUPERVIP", "READY", 3, 15);
 		roomf36.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf37 = new Room("F027", "SUPERVIP", "EMPTY", 3, 15);
+		Room roomf37 = new Room("F027", "SUPERVIP", "READY", 3, 15);
 		roomf37.setRoomPrices(roomPriceSuperVipHas15Capacity);
 		
-		Room roomf38 = new Room("F028", "SUPERVIP", "EMPTY", 3, 20);
+		Room roomf38 = new Room("F028", "SUPERVIP", "READY", 3, 20);
 		roomf38.setRoomPrices(roomPriceSuperVipHas20Capacity);
 		
-		Room roomf39 = new Room("F029", "SUPERVIP", "EMPTY", 3, 20);
+		Room roomf39 = new Room("F029", "SUPERVIP", "READY", 3, 20);
 		roomf39.setRoomPrices(roomPriceSuperVipHas20Capacity);
 
 		roomPriceRepository.save(roomPrice01);

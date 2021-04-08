@@ -28,6 +28,12 @@ public class BookRoom extends BaseEntity {
 	@Column(name = "customer_phone")
 	private String customerPhone;
 
+	@Column(name = "customer_name")
+	private String customerName;
+	
+	@Column(name = "notes", length = 2048)
+	private String notes;
+	
 	public Room getRoom() {
 		return room;
 	}
@@ -66,6 +72,22 @@ public class BookRoom extends BaseEntity {
 
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
+	}
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Override

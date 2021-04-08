@@ -50,6 +50,9 @@ public class Room extends BaseEntity {
 	@Column(name = "customer_phone")
 	private String customerPhone;
 	
+	@Column(name = "customer_name")
+	private String customerName;
+	
 	/**
 	 * Staff who set status "USING" room for customer
 	 * */
@@ -82,6 +85,7 @@ public class Room extends BaseEntity {
 		this.capacity = capacity;
 		
 		this.customerPhone = "EMPTY";
+		this.customerName = "EMPTY";
 	}
 	
 	public List<RoomPrice> getRoomPrices() {

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import info.kinhho.karaoke_management.assistants.DateFormatter;
+
 @Entity
 @Table(name = "product")
 public class Product extends BaseEntity {
@@ -122,7 +124,7 @@ public class Product extends BaseEntity {
 	}
 	
 	public String getExpiredAt() {
-		return expiredAt.format(formatter);
+		return expiredAt.format(DateFormatter.formatter);
 	}
 
 	public void setExpiredAt(ZonedDateTime expiredAt) {

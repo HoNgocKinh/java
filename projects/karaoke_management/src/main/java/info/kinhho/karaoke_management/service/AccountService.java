@@ -7,4 +7,5 @@ import info.kinhho.karaoke_management.entities.Account;
 @Service
 public interface AccountService extends BaseService<Account> {
 	
+	void deleteAll();
 }

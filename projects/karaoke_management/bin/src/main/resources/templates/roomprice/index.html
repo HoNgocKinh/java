@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:insert="layouts/layout.html::header"></head>
+<title>Rooms</title>
+</head>
+
+<body>
+	<div th:insert="layouts/layout.html::nav"></div>
+	<p></p>
+	<div class="container">
+		<p></p>
+		<div class="row">
+			<div class="col">
+				<h4 class="d-inline">Total:</h4>
+				<span th:utext="${roomPrices.size().toString() + ' Records'}"><span />
+			</div>
+			<div class="col-1 p-0 mr-0">
+				<button class="btn btn-sm btn-primary float-right"
+					data-toggle="tooltip" title="Add">
+					<i class="fa fa-plus"></i>
+				</button>
+			</div>
+			<div class="col-3">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control form-control-sm"
+						placeholder="Searching...">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary btn-sm" type="button">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col overflow-hidden" style="height: calc(100vh - 220px);">
+				<div class="table-reponsive h-100" style="overflow: auto;">
+					<table class="table table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th>#</th>
+								<th>Check In(Hour)</th>
+								<th>Check Out(Hour)</th>
+								<th>Capacity</th>
+								<th>Price</th>
+								<th>Type Day</th>
+								<th>Type Room</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="roomPrice, state : ${roomPrices}">
+								<tr>
+									<td th:utext="${state.index + 1}"></td>
+									<td th:utext="${roomPrice.getCheckIn()}"></td>
+									<td th:utext="${roomPrice.getCheckOut()}"></td>
+									<td th:utext="${roomPrice.getCapacity()}"></td>
+									<td th:utext="${roomPrice.getPrice()}"></td>
+									<td th:utext="${roomPrice.getTypeDay()}"></td>
+									<td th:utext="${roomPrice.getTypeRoom()}"></td>
+									<td>
+										<button class="btn btn-sm btn-secondary" data-toggle="tooltip"
+											title="Edit">
+											<i class="fa fa-edit"></i>
+										</button>
+										<button class="btn btn-sm btn-danger" data-toggle="tooltip"
+											title="Delete">
+											<i class="fa fa-trash"></i>
+										</button>
+										<button class="btn btn-sm btn-warning" data-toggle="tooltip"
+											title="Unactive">
+											<i class="fa fa-lock"></i>
+										</button>
+									</td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<body th:insert="layouts/layout.html::footer"></body>
+</body>
+
+</html>

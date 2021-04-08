@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:insert="layouts/layout.html::header"></head>
+	<title>Karaoke Management</title>
+</head>
+<body>
+	<div class="container" style="height: 100vh;">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<form action="/loginPost" method="POST">
+				<div class="card">
+					<div class="card-header">
+						<i class="fas fa-microphone-alt"></i>
+						 Karaoke Management
+					</div>
+					<div class="card-body">
+						<!-- /login?error=true -->
+				        <div th:if="${#request.getParameter('error') == 'true'}">
+				           <div class="alert alert-danger">
+				           	Username or password not correct!
+				           </div>
+				        </div>
+						<div class="form-group">
+							<div class="input-group mb-3">
+						    	<div class="input-group-prepend">
+						        	<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+						        </div>
+						  		<input type="text" class="form-control" name="username" required/>
+							</div>
+							<div class="input-group mb-3">
+						    	<div class="input-group-prepend">
+						        	<span class="input-group-text"><i class="fa fa-lock"></i></span>
+						        </div>
+						  		<input type="text" class="form-control" name="password" required/>
+							</div>
+							
+						</div>
+					</div>
+					<div class="card-footer">
+						<button class="btn btn-success float-right">Let's Go</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

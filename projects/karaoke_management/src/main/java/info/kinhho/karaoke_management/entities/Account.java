@@ -3,7 +3,9 @@ package info.kinhho.karaoke_management.entities;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,10 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 
 @Entity
 @Table(name = "account")
-public class Account extends BaseEntity {
+public class Account extends BaseEntity implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -152,6 +158,45 @@ public class Account extends BaseEntity {
 		return "Account [username=" + username + ", password=" + password + ", name=" + name + ", active=" + active
 				+ ", permissions=" + permissions + ", roles=" + roles + ", signedInAt=" + signedInAt + ", signedOutAt="
 				+ signedOutAt + ", bills=" + bills + ", id=" + id + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+		String[] rolesArray = this.roles.split(",");
+		
+		if(!Objects.isNull(rolesArray))  {
+            for(String role: rolesArray)  {
+                GrantedAuthority authority = new SimpleGrantedAuthority(role);
+                grantList.add(authority);
+            }
+        }
+		return grantList;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return this.active;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return this.active;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return this.active;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return this.active;
 	}
 	
 }
