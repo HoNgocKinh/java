@@ -3,6 +3,7 @@ package info.kinhho.karaoke_management.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,16 @@ public class WarehouseController {
 	}
 	
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model, Authentication authentication) {
 		
+		String userLoggedIn = authentication.getName();
 		LOGGER.info("Inventory Index method - path: /warehouse/");
 		
 		WarehouseDTO warehouse = warehouseCentral.getDTORendering();
 				
 		model.addAttribute("warehouse", warehouse);
 		model.addAttribute("active", "warehouse");
+		model.addAttribute("userLoggedIn", userLoggedIn);
 		return "warehouse/index";
 	}
 	

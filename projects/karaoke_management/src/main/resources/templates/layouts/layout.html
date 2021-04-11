@@ -25,29 +25,40 @@
 					th:classappend="${active == 'home'} ? active"><a
 					class="nav-link" href="/">Home</a></li>
 
-				<li class="nav-item" th:classappend="${active == 'rooms'} ? active"><a
+				<li class="nav-item" 
+				sec:authorize="hasRole('ADMIN')"
+				th:classappend="${active == 'rooms'} ? active"><a
 					class="nav-link ml-4" href="/rooms">Rooms</a></li>
 
-				<li class="nav-item"
-					th:classappend="${active == 'roomPrice'} ? active"><a
-					class="nav-link ml-4" href="/roomPrice/">Room Price</a></li>
+				<li class="nav-item" sec:authorize="hasRole('ADMIN')"
+					th:classappend="${active == 'roomprice'} ? active"><a
+					class="nav-link ml-4" href="/roomprice/">Room Price</a></li>
 
 				<li class="nav-item"
+					sec:authorize="hasRole('ADMIN')"
 					th:classappend="${active == 'supplier'} ? active"><a
 					class="nav-link ml-4" href="/suppliers/">Suppliers</a></li>
 
-				<li class="nav-item ml-4"
+				<li class="nav-item ml-4" 
+					sec:authorize="hasRole('ROLE_ADMIN')"
 					th:classappend="${active == 'warehouse'} ? active"><a
 					class="nav-link" href="/warehouse">Warehouse</a></li>
 
 				<!--  sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_STATISTIC')" -->
 				<li class="nav-item ml-4"
+					sec:authorize="hasRole('ADMIN') or hasRole('ACCOUNTING')"
 					th:classappend="${active == 'statistic'} ? active"><a
-					class="nav-link" href="#">Statistic</a></li>
+					class="nav-link" href="/statistic/">Statistic</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link mr-4"><span
-						sec:authentication="name" style="font-size: 18px"></span></a></li>
+				<li class="nav-item active">
+					<a class="nav-link mr-4">
+					<i class="fa fa-user"></i>
+					<span sec:authentication="name" th:inline="text" style="font-size: 18px">
+						
+					</span>
+					</a>
+				</li>
 				<li class="nav-item">
 					<form class="form-inline" method="post" th:action="@{/logout}">
 						<button sec:authorize="isAuthenticated()"

@@ -11,6 +11,9 @@ Notes: Some missing function will do if has time
 	+ supplier
 	+ home
 		+ room -> get prices per hours
+		+ searching
+		+ when login already can't redirect to login page
+	+ Missing accounts management
 		
 	
 		

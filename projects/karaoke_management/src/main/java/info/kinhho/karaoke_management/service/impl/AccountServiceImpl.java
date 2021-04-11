@@ -16,8 +16,9 @@ import info.kinhho.karaoke_management.repository.AccountRepository;
 import info.kinhho.karaoke_management.service.AccountService;
 
 @Service
-public class AccountServiceImpl extends BaseServiceImpl<Account, AccountRepository> 
-								implements AccountService, UserDetailsService {
+public class AccountServiceImpl 
+		extends BaseServiceImpl<Account, AccountRepository> 
+		implements AccountService, UserDetailsService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
 	
@@ -45,9 +46,9 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, AccountReposito
 
 	public void createSeedData() {
 		
-		Account account1 = new Account(1L, "admin", passwordEncoder.encode("123456"), "ADMIN", "INSERT, READ, UPDATE,DELETE", "ADMIN");
-		Account account2 = new Account(2L, "staff", passwordEncoder.encode("123456"), "STAFF", "INSERT, READ", "ADMIN");
-		Account account3 = new Account(3L, "account", passwordEncoder.encode("123456"), "ACCOUNTING", "READ, STATISTIC", "ACCOUNTING");
+		Account account1 = new Account(1L, "admin", passwordEncoder.encode("123456"), "ADMIN", "INSERT, READ, UPDATE,DELETE", "ROLE_ADMIN");
+		Account account2 = new Account(2L, "staff", passwordEncoder.encode("123456"), "STAFF", "INSERT, READ", "ROLE_STAFF");
+		Account account3 = new Account(3L, "accounting", passwordEncoder.encode("123456"), "ACCOUNTING", "READ, STATISTIC", "ROLE_ACCOUNTING");
 		
 		repository.save(account1);
 		repository.save(account2);
@@ -61,5 +62,15 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, AccountReposito
 	@Override
 	public void unactive(Long id) {
 		
+		Account account = repository.findById(id).get();
+		account.setActive(false);
+		
+		repository.save(account);
 	}
+
+	@Override
+	public Account findByUsername(String username) {
+		return repository.findByUsername(username);
+	}
+	
 }

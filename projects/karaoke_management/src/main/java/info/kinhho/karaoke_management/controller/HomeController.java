@@ -1,6 +1,12 @@
 package info.kinhho.karaoke_management.controller;
 
+import java.util.Arrays;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +20,7 @@ import info.kinhho.karaoke_management.lightweight.HomeCentral;
 @RequestMapping(value = "/")
 public class HomeController {
 	
+	private static Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	private HomeCentral homeCentral;
 	
 	public HomeController(HomeCentral homeCentral) {
@@ -21,19 +28,33 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model, Authentication authentication) {
+		
+		String usernameLoggedIn = authentication.getName();
+		SimpleGrantedAuthority[] authorities = authentication.getAuthorities().toArray(new SimpleGrantedAuthority[0]);
+		
+		LOGGER.info("User Logged In: {}", usernameLoggedIn);
+		LOGGER.info("User Authorities: {}", Arrays.toString(authorities));
 		
 		HomeDTO home = homeCentral.getDTORendering();
 		
 		model.addAttribute("homeDTO", home);
 		model.addAttribute("active", "home");
+		model.addAttribute("userLoggedIn", usernameLoggedIn);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/bookroom", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> bookRoom(@RequestBody String requestBody) {
+	public ResponseEntity<Boolean> bookRoom(@RequestBody String requestBody, Authentication authentication) 
+			throws Exception {
 		
-		homeCentral.bookRoom(requestBody);
+		LOGGER.info("POST /bookroom with params: {}", requestBody);
+		
+		String username = authentication.getName();
+		LOGGER.info("Username: {}", username);
+		
+		
+		homeCentral.bookRoom(requestBody, username);
 		return ResponseEntity.ok(true);
 	}
 }

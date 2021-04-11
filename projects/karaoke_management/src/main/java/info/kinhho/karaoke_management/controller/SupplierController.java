@@ -1,6 +1,7 @@
 package info.kinhho.karaoke_management.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,15 @@ public class SupplierController {
 	}
 	
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model, Authentication authentication) {
+		
+		String userLoggedIn = authentication.getName();
 		
 		SupplierDTO supplier = supplierCentral.getDTORendering();
 		
 		model.addAttribute("supplierDTO", supplier);
 		model.addAttribute("active", "supplier");
-		
+		model.addAttribute("userLoggedIn", userLoggedIn);
 		return "supplier/index";
 	}
 	

@@ -102,109 +102,127 @@
 				<div class="alert alert-danger d-none">
 				</div>
 				<!-- End Aler -->
-				
-				<div id="s_bookroom" class="services d-none">
-					<h4>Book Room Information </h4>
-					
-					<div class="row">
-						<div class="col">
-							<div class="form-group mb-0">
-								<label class="w-100">Customer's Name
-									<input type="text" class="form-control" id="m_customerName" name="customerName" />
-								</label>
+				<form id="formValidity">
+					<div id="s_bookroom" class="services d-none">
+						<h4>Book Room Information </h4>
+						
+						<div class="row">
+							<div class="col">
+								<div class="form-group mb-1">
+									<label class="w-100">Customer's Name
+										<input type="text" class="form-control" required name="customerName" />
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group mb-0">
-								<label class="w-100">Customer's phone 
-									<input type="text" class="form-control" id="m_customerPhone" name="customerPhone" />
-								</label>
+						<div class="row">
+							<div class="col">
+								<div class="form-group mb-1">
+									<label class="w-100">Customer's Phone 
+										<input type="text" class="form-control" required name="customerPhone" />
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group mb-0">
-								<label class="w-100">Hours Booking
-									<select class="form-control" name="hourBooking">
-										<option th:each="hourBooking, state : ${homeDTO.hoursBooking}" th:value="${hourBooking}" th:utext="${hourBooking}"></option>
-									</select>
-								</label>
+						<div class="row">
+							<div class="col">
+								<div class="form-group mb-1">
+									<label class="w-100">Hour
+										<select class="form-control" name="hourBooking" required>
+											<option th:each="hourBooking, state : ${homeDTO.hoursBooking}" th:value="${hourBooking}" th:utext="${hourBooking}"></option>
+										</select>
+									</label>
+								</div>
 							</div>
-							
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group mb-0">
-								<label for="w-100">Notes</label>
-								<textarea class="form-control" rows="6" name="notes"></textarea>
+							<div class="col">
+								<div class="form-group mb-1">
+									<label class="w-100">Date
+										<input type="date" name="dateBooking" class="form-control" required/>
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group mb-0">
-								<div class="d-flex justify-content-end mt-2">
-									<button class="btn btn-primary" onclick="bookingRoom('bookroom', '/bookroom')">Book</button>
+						<div class="row">
+							<div class="col">
+								<div class="form-group mb-1">
+									<label for="w-100">Notes</label>
+									<textarea class="form-control" rows="6" name="notes"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group mb-1">
+									<div class="d-flex justify-content-end mt-2">
+										<button class="btn btn-primary" onclick="bookingRoom(event, 'bookroom', '/bookroom')">Book</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div id="s_orderservice" class="services">
-					<h4>Order Service </h4>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label class="w-100">Room
-									<input type="text" class="form-control" name="roomName" readonly/>
-								</label>
+					<div id="s_orderservice" class="services">
+						<h4>Order Service </h4>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100">Room
+										<input type="text" class="form-control" name="roomName" readonly/>
+									</label>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label class="w-100">Floor
+										<input type="text" class="form-control" name="floor" readonly/>
+									</label>
+								</div>
 							</div>
 						</div>
-						<div class="col">
-							<div class="form-group">
-								<label class="w-100">Floor
-									<input type="text" class="form-control" name="floor" readonly/>
-								</label>
+						<div class="row">
+							<div class="col">
+								<select class="form-control" name="productName">
+									<option th:each="product : ${homeDTO.products}" th:value="${product.id}" th:utext="${product.name}"></option>
+								</select>
+							</div>
+							<div class="col-4">
+								<input type="number" placeholder="Quantity" class="form-control" name="quantity" min="1" value="1"/>
+							</div>
+							<div class="col-2">
+								<button class="btn btn-success btn-block"><i class="fa fa-plus"></i></button>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col">
-							<select class="form-control" name="productName">
-								<option th:each="product : ${homeDTO.products}" th:value="${product.id}" th:utext="${product.name}"></option>
-							</select>
-						</div>
-						<div class="col-4">
-							<input type="number" placeholder="Quantity" class="form-control" name="quantity" min="1" value="1"/>
-						</div>
-						<div class="col-2">
-							<button class="btn btn-success btn-block"><i class="fa fa-plus"></i></button>
-						</div>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	
 	<script>
 		function openService(serviceId) {
 			
 			hideContainer(["services"]);
 			showContainer([serviceId]);
 		}
-		function bookingRoom(serviceName, url) {
-			let service = {};
-			$(`#s_${serviceName} [name]`).toArray().forEach(ele => {
-				let name = ele.getAttribute("name");
-				let value = ele.value;
-				service[name] = value;
-			});
-			let bodyData = {};
-			bodyData[serviceName] = service;
-			sendRequest(url, bodyData);
+		function checkFormValidity() {
+			return document.querySelector("#formValidity").checkValidity();
+		}
+		function bookingRoom(event, serviceName, url) {
+			if (checkFormValidity()) {
+				// prevent form redirect
+				event.preventDefault();
+				
+				let service = {};
+				$(`#s_${serviceName} [name]`).toArray().forEach(ele => {
+					let name = ele.getAttribute("name");
+					let value = ele.value;
+					service[name] = value;
+				});
+				let bodyData = {};
+				bodyData[serviceName] = service;
+				console.log("Booking Room Service");
+				console.table(bodyData);		
+				sendRequest(url, bodyData);
+			}
 		}
 		function sendRequest(url, bodyData) {
 			

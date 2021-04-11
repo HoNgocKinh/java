@@ -19,6 +19,9 @@ public class BookRoom extends BaseEntity {
 	@ManyToOne
 	private Account account;
 	
+	@Column(name = "book_time")
+	private ZonedDateTime bookTime;
+	
 	@Column(name = "start_time")
 	private ZonedDateTime startTime;
 	
@@ -88,6 +91,14 @@ public class BookRoom extends BaseEntity {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public ZonedDateTime getBookTime() {
+		return bookTime;
+	}
+
+	public void setBookTime(ZonedDateTime bookTime) {
+		this.bookTime = bookTime;
 	}
 
 	@Override
