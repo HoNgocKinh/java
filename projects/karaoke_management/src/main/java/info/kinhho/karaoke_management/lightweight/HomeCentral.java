@@ -1,5 +1,6 @@
 package info.kinhho.karaoke_management.lightweight;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.internal.LinkedTreeMap;
 
+import info.kinhho.karaoke_management.assistants.DateFormatter;
+import info.kinhho.karaoke_management.assistants.ServiceResponse;
 import info.kinhho.karaoke_management.dtos.HomeDTO;
 import info.kinhho.karaoke_management.entities.Account;
 import info.kinhho.karaoke_management.entities.BookRoom;
@@ -54,7 +58,7 @@ public class HomeCentral {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void bookRoom(String requestBody, String accountUsername) throws Exception {
+	public ServiceResponse bookRoom(String requestBody, String accountUsername) throws Exception {
 		
 		Account account = accountService.findByUsername(accountUsername);
 		
@@ -96,6 +100,42 @@ public class HomeCentral {
 		}
 		bookRoom.setRoom(rooms.get(0));
 		bookRoomService.save(bookRoom);
+		
+		return createServiceResponse(200, "", "bookroom", rooms.get(0).getJsonObject());
+	}
+	
+	public ServiceResponse scheduleRoom(Long roomId) {
+		
+		ZonedDateTime startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault());
+		List<String> bookingTimes = this.bookRoomService.findAllByActive(true)
+				.stream()
+				.parallel()
+				.filter(bookRoom -> {
+					ZonedDateTime bookingTimeWithZone = bookRoom.getBookTime();
+					// removed time booking (just get date)
+					ZonedDateTime bookingDate = bookingTimeWithZone.toLocalDate().atStartOfDay(ZoneId.systemDefault());
+					return bookRoom.getRoom().getId() == roomId && bookingDate.isEqual(startOfToday);
+				})
+				.map(bookRoom -> {
+					JsonObject obj = new JsonObject();
+					obj.addProperty("name", bookRoom.getCustomerName());
+					obj.addProperty("time", DateFormatter.format(bookRoom.getBookTime().toLocalTime(), "HH:mm"));
+					obj.addProperty("phone", bookRoom.getCustomerPhone());
+					return obj.toString();
+				})
+				.collect(Collectors.toList());
+		
+		return createServiceResponse(200, "", "scheduleRoom", bookingTimes.toString());
+	}
+	
+	private ServiceResponse createServiceResponse(int code, String message, String type, String data) {
+		
+		ServiceResponse serviceResponse = new ServiceResponse();
+		serviceResponse.setCode(code);
+		serviceResponse.setMessage(message);
+		serviceResponse.setType(type);
+		serviceResponse.setData(data);
+		return serviceResponse;
 	}
 	
 	private List<String> getHoursBooking() {

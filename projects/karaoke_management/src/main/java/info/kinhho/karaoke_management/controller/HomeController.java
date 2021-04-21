@@ -9,10 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import info.kinhho.karaoke_management.assistants.ServiceResponse;
 import info.kinhho.karaoke_management.dtos.HomeDTO;
 import info.kinhho.karaoke_management.lightweight.HomeCentral;
 
@@ -44,8 +46,8 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/bookroom", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> bookRoom(@RequestBody String requestBody, Authentication authentication) 
+	@RequestMapping(value = "/api/bookroom", method = RequestMethod.POST)
+	public ResponseEntity<String> bookRoom(@RequestBody String requestBody, Authentication authentication) 
 			throws Exception {
 		
 		LOGGER.info("POST /bookroom with params: {}", requestBody);
@@ -53,8 +55,17 @@ public class HomeController {
 		String username = authentication.getName();
 		LOGGER.info("Username: {}", username);
 		
+		ServiceResponse serviceResponse = homeCentral.bookRoom(requestBody, username);
+		return ResponseEntity.ok(serviceResponse.toString());
+	}
+	
+	@RequestMapping(value = "/api/scheduleRoom/{roomid}", method = RequestMethod.POST)
+	public ResponseEntity<String> scheduleRoom(@PathVariable("roomid") Long roomId) {
 		
-		homeCentral.bookRoom(requestBody, username);
-		return ResponseEntity.ok(true);
+		LOGGER.info("POST /scheduleRoom with params: {}", roomId);
+		
+		ServiceResponse serviceResponse = homeCentral.scheduleRoom(roomId);
+		return ResponseEntity.ok(serviceResponse.toString());
 	}
 }
+ 

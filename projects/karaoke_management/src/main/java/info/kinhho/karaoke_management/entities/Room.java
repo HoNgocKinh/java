@@ -171,25 +171,10 @@ public class Room extends BaseEntity {
 		return sdf.format(checkIn);
 	}
 	
-	public String displayTypeRoom() {
-		if (type.equals("NORMAL")) {
-			return "Thường";
-		}
-		return "VIP";
-	}
-	
-	public String displayStatusRoom() {
-		if (status.equals("EMPTY"))
-			return "Trống";
-		else if (status.equals("ORDERED")) {
-			return "Đã đặt";
-		}
-		return "Đang sử dụng";
-	}
-
 	@Override
 	public String getJsonObject() {
-		// TODO Auto-generated method stub
-		return "";
+		
+		return String.format("{\"id\": %d, \"name\": \"%s\", \"floor\": \"%s\", \"type\": \"%s\", \"capacity\": %d}",
+				id, name, floor, type, capacity);
 	}
 }

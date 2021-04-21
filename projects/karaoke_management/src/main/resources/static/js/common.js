@@ -18,6 +18,25 @@ function openModal(id, objectStr, actionName, setUpDefault = false) {
 	$(`#${id}`).modal({show: true});
 }
 
+function showModalNotification(code, message) {
+	const statusCode = {
+		SUCCESS: 200
+	};
+	
+	let notifyElement = "#notification";
+	let modalHeaderClass = ".modal-header";
+	let modalBodyMessage = ".modal-body-message";
+	
+	if (code == statusCode.SUCCESS) {
+		$(notifyElement).find(modalHeaderClass).removeClass("alert-danger").addClass("alert-success");
+	}
+	else {
+		$(notifyElement).find(modalHeaderClass).removeClass("alert-success").addClass("alert-danger");
+	}
+	$(modalBodyMessage).html(message);
+	$("#notification").modal({show: true});
+}
+		
 function confirmModal(message, key, methodURL) {
 	
 	let isConfirmDelete = confirm(message);
