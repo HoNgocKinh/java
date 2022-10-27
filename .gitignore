@@ -1,0 +1,5 @@
+/game/chess-blueprint/bin
+/jms/rabitmq/rabitmq/target
+/rmi/ex4/bin
+/security/mvc_security_conf_xml/target
+/security/oauth2/authorization-server/bin
